@@ -27,7 +27,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/recommendations/foruser"; }
+            get { return "/v2/recommendations/foruser"; }
         }
 
         public List<RecommendJobResult> GetRecommendations()

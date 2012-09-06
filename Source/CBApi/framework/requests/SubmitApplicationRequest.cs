@@ -13,7 +13,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/application/submit"; }
+            get { return "/v2/application/submit"; }
         }
 
         public ResponseApplication Submit(Application app)

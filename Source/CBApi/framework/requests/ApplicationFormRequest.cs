@@ -28,7 +28,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/application/form"; }
+            get { return "/v2/application/form"; }
         }
 
         public string Retrieve()

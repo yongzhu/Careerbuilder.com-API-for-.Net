@@ -15,7 +15,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/employeetypes"; }
+            get { return "/v2/employeetypes"; }
         }
 
         public IEmployeeTypesRequest WhereCountryCode(CountryCode value)

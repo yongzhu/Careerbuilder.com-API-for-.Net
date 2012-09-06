@@ -37,7 +37,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/jobsearch"; }
+            get { return "/v2/jobsearch"; }
         }
 
         public ResponseJobSearch Search()

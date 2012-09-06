@@ -5,6 +5,7 @@ using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.responses;
 using com.careerbuilder.api.models.service;
 using com.careerbuilder.api.framework.requests;
+using com.careerbuilder;
 
 namespace CBApiCosoleApp
 {
@@ -12,9 +13,12 @@ namespace CBApiCosoleApp
     {
         static void Main(string[] args)
         {
-            var svc = new CBApi("EnterDevKey");
+            var svc = API.GetInstance("WTV13M6PWYRJLFJL2G7");
 
-            //Make a call to https://api.careerbuilder.com/v1/categories
+            ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
+
+
+            //Make a call to https://api.careerbuilder.com/v2/categories
             List<Category> codes = svc.GetCategories()
                                       .WhereCountryCode(CountryCode.US)
                                       .ListAll();
@@ -23,7 +27,7 @@ namespace CBApiCosoleApp
                 Console.WriteLine(code.Code);
             }
 
-            //Make a call to https://api.careerbuilder.com/v1/employeetypes
+            //Make a call to https://api.careerbuilder.com/v2/employeetypes
             List<EmployeeType> emps = svc.GetEmployeeTypes()
                                       .WhereCountryCode(CountryCode.US)
                                       .ListAll();
@@ -46,26 +50,26 @@ namespace CBApiCosoleApp
                 Console.WriteLine(item.JobTitle);
             }
 
-            //Make a call to https://api.careerbuilder.com/v1/recommendations/forjob
+            //Make a call to https://api.careerbuilder.com/v2/recommendations/forjob
             List<RecommendJobResult> jobRecs = svc.GetRecommendationsForJob(jobs[0].DID);
             foreach (RecommendJobResult item in jobRecs)
             {
                 Console.WriteLine(item.Title);
             }
             
-            //Make a call to https://api.careerbuilder.com/v1/job
+            //Make a call to https://api.careerbuilder.com/v2/job
             Job myJob = svc.GetJob(jobs[0].DID);
             Console.WriteLine(myJob.JobTitle);
 
-            //Make a call to https://api.careerbuilder.com/v1/application/blank
+            //Make a call to https://api.careerbuilder.com/v2/application/blank
             BlankApplication myApp = svc.GetBlankApplication(jobs[0].DID);
 
-            //Make a call to https://api.careerbuilder.com/v1/application/submit in test mode
+            //Make a call to https://api.careerbuilder.com/v2/application/submit in test mode
             myApp.Test = true;
             ResponseApplication tempResponse = svc.SubmitApplication(myApp);
             Console.WriteLine(tempResponse.ApplicationStatus);
 
-            //Make a call to https://api.careerbuilder.com/v1/application/form
+            //Make a call to https://api.careerbuilder.com/v2/application/form
             string form = svc.GetApplicationForm(jobs[0].DID);
             Console.WriteLine(form);
         }

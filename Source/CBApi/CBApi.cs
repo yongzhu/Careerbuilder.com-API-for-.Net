@@ -3,36 +3,40 @@ using System.Collections.Generic;
 using com.careerbuilder.api.framework.requests;
 using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.service;
+using com.careerbuilder.api.models.responses;
 
 namespace com.careerbuilder.api
 {
-    public class CBApi
+    public class CBApi : ICBApi
     {
+        #region attributes
         protected TargetSite _TargetSite = null;
         public string DevKey {get;set;}
         public string CobrandCode { get; set; }    //If you are a careerbuilder partner you can set these tracking codes
         public string SiteID { get; set; }         //Otherwise leave these two parameters alone
+        #endregion
 
-        public CBApi()
+        #region construction and factories
+        protected internal CBApi()
         {
             _TargetSite = new CareerBuilderCom();
             DevKey = Properties.Settings.Default.DevKey;
         }
 
-        public CBApi(string key)
+        protected internal CBApi(string key)
         {
             _TargetSite = new CareerBuilderCom();
             DevKey = key;
         }
 
-        public CBApi(string key,string cobrandCode)
+        protected internal CBApi(string key, string cobrandCode)
         {
             _TargetSite = new CareerBuilderCom();
             DevKey = key;
             CobrandCode = cobrandCode;
         }
 
-        public CBApi(string key,string cobrandCode, string siteid)
+        protected internal CBApi(string key, string cobrandCode, string siteid)
         {
             _TargetSite = new CareerBuilderCom();
             DevKey = key;
@@ -40,6 +44,10 @@ namespace com.careerbuilder.api
             SiteID = siteid;
         }
 
+
+        #endregion
+
+        #region api calls
         /// <summary>
         /// Make a call to /v1/categories
         /// </summary>
@@ -133,5 +141,11 @@ namespace com.careerbuilder.api
             return new JobSearchRequest(DevKey, _TargetSite.Domain, CobrandCode, SiteID);
         }
 
+        public ResponseJobReport JobReport(string jobDID)
+        {
+            var req = new JobReportRequest(jobDID, DevKey, _TargetSite.Domain, CobrandCode, SiteID);
+            return req.GetReport();
+        }
+        #endregion
     }
 }

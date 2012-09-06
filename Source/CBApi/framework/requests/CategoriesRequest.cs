@@ -15,7 +15,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/categories"; }
+            get { return "/v2/categories"; }
         }
 
         public ICategoryRequest WhereCountryCode(CountryCode value)

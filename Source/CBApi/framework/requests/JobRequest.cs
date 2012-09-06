@@ -28,7 +28,7 @@ namespace com.careerbuilder.api.framework.requests
 
         public override string BaseURL
         {
-            get { return "/v1/job"; }
+            get { return "/v2/job"; }
         }
 
         public Job Retrieve()
