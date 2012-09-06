@@ -13,7 +13,7 @@ namespace CBApiCosoleApp
     {
         static void Main(string[] args)
         {
-            var svc = API.GetInstance("WTV13M6PWYRJLFJL2G7");
+            var svc = API.GetInstance("EnterDevKey");
 
             ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
 
