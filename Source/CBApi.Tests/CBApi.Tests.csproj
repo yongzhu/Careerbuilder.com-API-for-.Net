@@ -9,7 +9,7 @@
     <ProjectGuid>{563513D2-EDA6-417C-9111-CA0D7C9D6199}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CBApi.Tests</RootNamespace>
+    <RootNamespace>Tests.com.careerbuilder</RootNamespace>
     <AssemblyName>CBApi.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -37,13 +37,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.102.7\lib\net35\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -56,15 +52,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\requests\CategoriesRequestTest.cs" />
-    <Compile Include="models\requests\BlankApplicationTest.cs" />
-    <Compile Include="models\requests\UserRecommendationsRequestTest.cs" />
-    <Compile Include="models\requests\JobSearchRequestTest.cs" />
-    <Compile Include="models\requests\JobRequestTest.cs" />
-    <Compile Include="models\requests\GetRequestTest.cs" />
-    <Compile Include="models\requests\EmployeeTypesRequestTest.cs" />
+    <Compile Include="api\models\requests\CategoriesRequestTest.cs" />
+    <Compile Include="api\models\requests\BlankApplicationTest.cs" />
+    <Compile Include="api\models\requests\UserRecommendationsRequestTest.cs" />
+    <Compile Include="api\models\requests\JobSearchRequestTest.cs" />
+    <Compile Include="api\models\requests\JobRequestTest.cs" />
+    <Compile Include="api\models\requests\GetRequestTest.cs" />
+    <Compile Include="api\models\requests\EmployeeTypesRequestTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CBApiTest.cs" />
+    <Compile Include="api\CBApiTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CBApi\CBApi.csproj">

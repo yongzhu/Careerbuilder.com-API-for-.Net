@@ -6,22 +6,22 @@ namespace com.careerbuilder
     {
         public static ICBApi GetInstance()
         {
-            return new CBApi();
+            return new CbApi();
         }
 
         public static ICBApi GetInstance(string developerKey)
         {
-            return new CBApi(developerKey);
+            return new CbApi(developerKey);
         }
 
-        public static ICBApi GetInstance(string developerKey,string cobrandCode)
+        public static ICBApi GetInstance(string developerKey, string cobrandCode)
         {
-            return new CBApi(developerKey, cobrandCode);
+            return new CbApi(developerKey, cobrandCode);
         }
 
-        public static ICBApi GetInstance(string developerKey,string cobrandCode, string siteID)
+        public static ICBApi GetInstance(string developerKey, string cobrandCode, string siteID)
         {
-            return new CBApi(developerKey,cobrandCode,siteID);
+            return new CbApi(developerKey, cobrandCode, siteID);
         }
     }
 }
