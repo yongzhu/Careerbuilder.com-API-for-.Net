@@ -12,7 +12,9 @@ namespace CBApiCosoleApp
     {
         private static void Main(string[] args)
         {
-            ICBApi svc = API.GetInstance("EnterDevKey");
+            ICBApi svc = API.GetInstance("WDTY17R6R231BWMK4XV6");
+
+            var token = svc.GetAccessToken("EC18VBEK3JWI3NDN4892", "XI0Q3QP6fbyji7uix5VCOr3RE1a8Ha8HvobacllNSVg3o3TD5vwbVKu4rz0cz7EU", "AGHS5YX77PV2BXFXVCB2", "localhost%3a5787%2ftoken%2f%3fnextPage%3d%2fmycareerbuilder%2f");
 
             ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
 

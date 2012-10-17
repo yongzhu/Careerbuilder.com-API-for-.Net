@@ -47,12 +47,15 @@
     <Compile Include="API.cs" />
     <Compile Include="api\CBApi.cs" />
     <Compile Include="api\framework\requests\ApplicationFormRequest.cs" />
+    <Compile Include="api\framework\requests\AuthTokenRequest.cs" />
+    <Compile Include="api\framework\requests\OAuthRedirectBuilder.cs" />
     <Compile Include="api\framework\requests\JobReportRequest.cs" />
     <Compile Include="api\framework\requests\PostRequest.cs" />
     <Compile Include="api\framework\requests\SubmitApplicationRequest.cs" />
     <Compile Include="api\ICBApi.cs" />
     <Compile Include="api\models\Application.cs" />
     <Compile Include="api\models\Bucket.cs" />
+    <Compile Include="api\models\AccessToken.cs" />
     <Compile Include="api\models\Item.cs" />
     <Compile Include="api\models\ResponseJobReport.cs" />
     <Compile Include="api\models\Resume.cs" />
