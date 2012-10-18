@@ -120,7 +120,6 @@ namespace Tests.com.careerbuilder.api.Requests {
             restReq.Setup(x => x.AddParameter("client_secret", "ClientSecret"));
             restReq.Setup(x => x.AddParameter("redirect_uri", "redirectURI"));
             restReq.Setup(x => x.AddParameter("code", "Code"));
-            restReq.SetupSet(x => x.RootElement = "ResponseAccessToken");
 
             var restClient = new Mock<IRestClient>();
             restClient.SetupSet(x => x.BaseUrl = "https://api.careerbuilder.com/auth/token");
