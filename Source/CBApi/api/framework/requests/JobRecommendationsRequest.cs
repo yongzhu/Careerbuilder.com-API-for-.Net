@@ -8,8 +8,8 @@ namespace com.careerbuilder.api.framework.requests
     {
         protected string _jobDid = "";
 
-        public JobRecommendationsRequest(string jobDid, string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+        public JobRecommendationsRequest(string jobDid, APISettings settings)
+            : base(settings)
         {
             _jobDid = jobDid;
         }

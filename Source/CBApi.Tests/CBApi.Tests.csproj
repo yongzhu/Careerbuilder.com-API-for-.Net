@@ -57,6 +57,7 @@
     <Compile Include="api\models\requests\BlankApplicationTest.cs" />
     <Compile Include="api\models\requests\AuthTokenRequestTest.cs" />
     <Compile Include="api\models\requests\OAuthRedirectBuilderTest.cs" />
+    <Compile Include="api\models\requests\TargetSiteMock.cs" />
     <Compile Include="api\models\requests\UserRecommendationsRequestTest.cs" />
     <Compile Include="api\models\requests\JobSearchRequestTest.cs" />
     <Compile Include="api\models\requests\JobRequestTest.cs" />

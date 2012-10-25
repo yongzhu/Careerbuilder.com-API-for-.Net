@@ -9,8 +9,8 @@ namespace com.careerbuilder.api.framework.requests
     {
         protected string _countryCode = "US";
 
-        public CategoriesRequest(string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+        public CategoriesRequest(APISettings settings)
+            : base(settings)
         {
         }
 

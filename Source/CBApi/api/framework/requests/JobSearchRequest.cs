@@ -31,8 +31,8 @@ namespace com.careerbuilder.api.framework.requests
         protected bool _ExcludeNationWideJobs = true;
         protected bool _ExcludeNonTraditionalJobs = true;
 
-        public JobSearchRequest(string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+        public JobSearchRequest(APISettings settings)
+            : base(settings)
         {
         }
 

@@ -7,8 +7,8 @@ namespace com.careerbuilder.api.framework.requests
     {
         private readonly string _jobDid = "";
 
-        public JobReportRequest(string jobDid, string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+        public JobReportRequest(string jobDid, APISettings settings)
+            : base(settings)
         {
             _jobDid = jobDid;
         }

@@ -9,8 +9,8 @@ namespace com.careerbuilder.api.framework.requests {
         protected string _Code = "";
         protected string _RedirectUri = "";
 
-        internal AuthTokenRequest(string clientId, string clientSecret, string code, string redirectUri, string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid) {
+        internal AuthTokenRequest(string clientId, string clientSecret, string code, string redirectUri, APISettings settings)
+            : base(settings) {
                 
             if (string.IsNullOrEmpty(clientId)) {
                 throw new ArgumentNullException();

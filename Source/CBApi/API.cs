@@ -14,6 +14,10 @@ namespace com.careerbuilder
             return new CbApi(developerKey);
         }
 
+        public static ICBApi GetInstance(string developerKey,int timeoutMS) {
+            return new CbApi(developerKey);
+        }
+
         public static ICBApi GetInstance(string developerKey, string cobrandCode)
         {
             return new CbApi(developerKey, cobrandCode);

@@ -4,6 +4,8 @@ using Moq;
 using RestSharp;
 using com.careerbuilder.api.framework.requests;
 using com.careerbuilder.api.models;
+using com.careerbuilder.api;
+using Tests.com.careerbuilder.api.models.requests;
 
 namespace Tests.com.careerbuilder.api.Requests
 {
@@ -103,7 +105,7 @@ namespace Tests.com.careerbuilder.api.Requests
     internal class BlankAppStub : BlankApplicationRequest
     {
         public BlankAppStub(string jobDID, string key, string domain, string cobrand, string siteid)
-            : base(jobDID, key, domain, cobrand, siteid)
+            : base(jobDID, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) })
         {
         }
 
@@ -114,12 +116,12 @@ namespace Tests.com.careerbuilder.api.Requests
 
         public string DevKey
         {
-            get { return _DevKey; }
+            get { return _Settings.DevKey; }
         }
 
         public string Domain
         {
-            get { return _Domain; }
+            get { return _Settings.TargetSite.Domain; }
         }
 
         public string RequestURL

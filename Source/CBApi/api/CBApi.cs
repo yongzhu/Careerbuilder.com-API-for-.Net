@@ -9,37 +9,46 @@ using System;
 namespace com.careerbuilder.api {
     public class CbApi : ICBApi {
         #region attributes
+        protected APISettings _Settings = new APISettings();
 
-        protected TargetSite TargetSite = null;
-        public string DevKey { get; set; }
-        public string CobrandCode { get; set; } //If you are a careerbuilder partner you can set these tracking codes
-        public string SiteId { get; set; } //Otherwise leave these two parameters alone
+        public string DevKey { 
+            get {return _Settings.DevKey;}
+            set { _Settings.DevKey = value; } 
+        }
+        public string CobrandCode {
+            get { return _Settings.CobrandCode; }
+            set { _Settings.CobrandCode = value; }
+        }
+        public string SiteId {
+            get { return _Settings.SiteId; }
+            set { _Settings.SiteId = value; }
+        }
 
         #endregion
 
         #region construction and factories
 
         protected internal CbApi() {
-            TargetSite = new CareerBuilderCom();
-            DevKey = Settings.Default.DevKey;
+            _Settings.TargetSite = new CareerBuilderCom();
+            _Settings.DevKey = Settings.Default.DevKey;
         }
 
         protected internal CbApi(string key) {
-            TargetSite = new CareerBuilderCom();
-            DevKey = key;
+            _Settings.TargetSite = new CareerBuilderCom();
+            _Settings.DevKey = key;
         }
 
         protected internal CbApi(string key, string cobrandCode) {
-            TargetSite = new CareerBuilderCom();
-            DevKey = key;
-            CobrandCode = cobrandCode;
+            _Settings.TargetSite = new CareerBuilderCom();
+            _Settings.DevKey = key;
+            _Settings.CobrandCode = cobrandCode;
         }
 
         protected internal CbApi(string key, string cobrandCode, string siteid) {
-            TargetSite = new CareerBuilderCom();
-            DevKey = key;
-            CobrandCode = cobrandCode;
-            SiteId = siteid;
+            _Settings.TargetSite = new CareerBuilderCom();
+            _Settings.DevKey = key;
+            _Settings.CobrandCode = cobrandCode;
+            _Settings.SiteId = siteid;
         }
 
         #endregion
@@ -54,7 +63,7 @@ namespace com.careerbuilder.api {
         /// <param name="redirectUri">URL that was provided at the time of external client registration.</param>
         /// <returns></returns>
         AccessToken ICBApi.GetAccessToken(string clientId, string clientSecret, string code, string redirectUri) {
-            var req = new AuthTokenRequest(clientId, clientSecret, code, redirectUri, DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            var req = new AuthTokenRequest(clientId, clientSecret, code, redirectUri, _Settings);
             return req.GetAccessToken(); ;
         }
         
@@ -66,7 +75,7 @@ namespace com.careerbuilder.api {
         /// <param name="permissions"></param>
         /// <returns></returns>
         Uri ICBApi.GetOAuthRedirectUri(string clientId, string redirectUri, string permissions) {
-            var req = new OAuthRedirectBuilder(clientId, redirectUri, permissions, TargetSite.Domain);
+            var req = new OAuthRedirectBuilder(clientId, redirectUri, permissions, _Settings.TargetSite.Domain);
             return req.OAuthUri();
         }
 
@@ -76,7 +85,7 @@ namespace com.careerbuilder.api {
         /// </summary>
         /// <returns>A Category Request to query against</returns>
         public ICategoryRequest GetCategories() {
-            return new CategoriesRequest(DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            return new CategoriesRequest(_Settings);
         }
 
         /// <summary>
@@ -84,7 +93,7 @@ namespace com.careerbuilder.api {
         /// </summary>
         /// <returns>A Employee Request to query against</returns>
         public IEmployeeTypesRequest GetEmployeeTypes() {
-            return new EmployeeTypesRequest(DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            return new EmployeeTypesRequest(_Settings);
         }
 
         /// <summary>
@@ -93,7 +102,7 @@ namespace com.careerbuilder.api {
         /// <param name="JobDID">The unique ID of the job</param>
         /// <returns>The job</returns>
         public BlankApplication GetBlankApplication(string jobDid) {
-            var req = new BlankApplicationRequest(jobDid, DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            var req = new BlankApplicationRequest(jobDid, _Settings);
             return req.Retrieve();
         }
 
@@ -103,7 +112,7 @@ namespace com.careerbuilder.api {
         /// <param name="JobDID">The unique ID of the job</param>
         /// <returns>The job</returns>
         public string GetApplicationForm(string jobDid) {
-            var req = new ApplicationFormRequest(jobDid, DevKey, TargetSite.Domain);
+            var req = new ApplicationFormRequest(jobDid, _Settings);
             return req.Retrieve();
         }
 
@@ -113,7 +122,7 @@ namespace com.careerbuilder.api {
         /// <param name="app">The application being submited to careerbuilder</param>
         /// <returns></returns>
         public ResponseApplication SubmitApplication(Application app) {
-            var req = new SubmitApplicationRequest(TargetSite.Domain);
+            var req = new SubmitApplicationRequest(_Settings);
             return req.Submit(app);
         }
 
@@ -123,7 +132,7 @@ namespace com.careerbuilder.api {
         /// <param name="JobDID">The unique ID of the job</param>
         /// <returns>The job</returns>
         public Job GetJob(string jobDid) {
-            var req = new JobRequest(jobDid, DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            var req = new JobRequest(jobDid, _Settings);
             return req.Retrieve();
         }
 
@@ -133,7 +142,7 @@ namespace com.careerbuilder.api {
         /// <param name="JobDID">The unique ID of the job</param>
         /// <returns>The job</returns>
         public List<RecommendJobResult> GetRecommendationsForJob(string jobDid) {
-            var req = new JobRecommendationsRequest(jobDid, DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            var req = new JobRecommendationsRequest(jobDid, _Settings);
             return req.GetRecommendations();
         }
 
@@ -143,7 +152,7 @@ namespace com.careerbuilder.api {
         /// <param name="externalId">The ID of the user that you wish to get recs for</param>
         /// <returns></returns>
         public List<RecommendJobResult> GetRecommendationsForUser(string externalId) {
-            var req = new UserRecommendationsRequest(externalId, DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            var req = new UserRecommendationsRequest(externalId, _Settings);
             return req.GetRecommendations();
         }
 
@@ -152,11 +161,11 @@ namespace com.careerbuilder.api {
         /// </summary>
         /// <returns>A Job Request to query against</returns>
         public IJobSearch JobSearch() {
-            return new JobSearchRequest(DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            return new JobSearchRequest(_Settings);
         }
 
         public ResponseJobReport JobReport(string jobDid) {
-            var req = new JobReportRequest(jobDid, DevKey, TargetSite.Domain, CobrandCode, SiteId);
+            var req = new JobReportRequest(jobDid, _Settings);
             return req.GetReport();
         }
 

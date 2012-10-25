@@ -5,6 +5,8 @@ using RestSharp;
 using com.careerbuilder.api.framework.requests;
 using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.service;
+using Tests.com.careerbuilder.api.models.requests;
+using com.careerbuilder.api;
 
 namespace Tests.com.careerbuilder.api.Requests
 {
@@ -80,18 +82,18 @@ namespace Tests.com.careerbuilder.api.Requests
     internal class EmployeeTypesStub : EmployeeTypesRequest
     {
         public EmployeeTypesStub(string key, string domain)
-            : base(key, domain, "", "")
+            : base(new APISettings() { DevKey = key, CobrandCode = "", SiteId = "", TargetSite = new TargetSiteMock(domain) })
         {
         }
 
         public string DevKey
         {
-            get { return _DevKey; }
+            get { return _Settings.DevKey; }
         }
 
         public string Domain
         {
-            get { return _Domain; }
+            get { return _Settings.TargetSite.Domain; }
         }
 
         public string CountryCode

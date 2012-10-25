@@ -7,8 +7,8 @@ namespace com.careerbuilder.api.framework.requests
     {
         protected string JobDid = "";
 
-        public ApplicationFormRequest(string jobDid, string key, string domain)
-            : base(key, domain, "", "")
+        public ApplicationFormRequest(string jobDid, APISettings settings)
+            : base(settings)
         {
             if (string.IsNullOrEmpty(jobDid))
             {

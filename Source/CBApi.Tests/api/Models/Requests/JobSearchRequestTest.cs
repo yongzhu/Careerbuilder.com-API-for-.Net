@@ -5,6 +5,8 @@ using com.careerbuilder.api.framework.requests;
 using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.responses;
 using com.careerbuilder.api.models.service;
+using Tests.com.careerbuilder.api.models.requests;
+using com.careerbuilder.api;
 
 namespace Tests.com.careerbuilder.api.Requests
 {
@@ -86,18 +88,18 @@ namespace Tests.com.careerbuilder.api.Requests
     internal class JobSearchStub : JobSearchRequest
     {
         public JobSearchStub(string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+            : base(new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) })
         {
         }
 
         public string DevKey
         {
-            get { return _DevKey; }
+            get { return _Settings.DevKey; }
         }
 
         public string Domain
         {
-            get { return _Domain; }
+            get { return _Settings.TargetSite.Domain; }
         }
 
         public string CountryCode

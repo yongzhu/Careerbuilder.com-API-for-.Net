@@ -9,8 +9,8 @@ namespace com.careerbuilder.api.framework.requests
     {
         protected string _ExternalID = "";
 
-        public UserRecommendationsRequest(string externalID, string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+        public UserRecommendationsRequest(string externalID, APISettings settings)
+            : base(settings)
         {
             if (!string.IsNullOrEmpty(externalID))
             {

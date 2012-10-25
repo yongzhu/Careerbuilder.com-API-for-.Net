@@ -8,8 +8,8 @@ namespace com.careerbuilder.api.framework.requests
     {
         protected string _jobDid = "";
 
-        internal JobRequest(string jobDid, string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
+        internal JobRequest(string jobDid, APISettings settings)
+            : base(settings)
         {
             if (string.IsNullOrEmpty(jobDid))
             {

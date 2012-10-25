@@ -48,7 +48,7 @@ namespace Tests.com.careerbuilder.api
     {
         public TargetSite Site
         {
-            get { return TargetSite; }
+            get { return _Settings.TargetSite; }
         }
     }
 }

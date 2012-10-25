@@ -5,7 +5,7 @@ namespace com.careerbuilder.api.framework.requests
 {
     internal class SubmitApplicationRequest : PostRequest
     {
-        public SubmitApplicationRequest(string domain) : base(domain)
+        public SubmitApplicationRequest(APISettings settings) : base(settings)
         {
         }
 

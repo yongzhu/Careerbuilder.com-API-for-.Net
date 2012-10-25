@@ -4,6 +4,8 @@ using Moq;
 using RestSharp;
 using com.careerbuilder.api.framework.requests;
 using com.careerbuilder.api.models;
+using com.careerbuilder.api;
+using Tests.com.careerbuilder.api.models.requests;
 
 namespace Tests.com.careerbuilder.api.Requests {
     [TestClass]
@@ -137,7 +139,7 @@ namespace Tests.com.careerbuilder.api.Requests {
 
     internal class AuthTokenRequestStub : AuthTokenRequest {
         public AuthTokenRequestStub(string clientId, string clientSecret, string code, string redirectUri, string key, string domain, string cobrand, string siteid)
-            : base(clientId, clientSecret, code, redirectUri, key, domain, cobrand, siteid) {
+            : base(clientId, clientSecret, code, redirectUri, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) }) {
         }
 
         public string ClientId {

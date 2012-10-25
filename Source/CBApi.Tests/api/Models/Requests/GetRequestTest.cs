@@ -3,6 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
 using com.careerbuilder.api.framework.requests;
+using com.careerbuilder.api;
+using com.careerbuilder.api.models.service;
+using Tests.com.careerbuilder.api.models.requests;
 
 namespace Tests.com.careerbuilder.api.Requests
 {
@@ -119,6 +122,7 @@ namespace Tests.com.careerbuilder.api.Requests
             restReq.Setup(x => x.AddParameter("DeveloperKey", "DevKey"));
             restReq.Setup(x => x.AddParameter("CoBrand", "this is a cobrand"));
             restReq.Setup(x => x.AddParameter("SiteID", "this is a siteid"));
+            restReq.SetupSet(x => x.Timeout = 15000);
 
             var restClient = new Mock<IRestClient>();
             request.Request = restReq.Object;
@@ -141,28 +145,27 @@ namespace Tests.com.careerbuilder.api.Requests
     internal class GetRequestStub : GetRequest
     {
         public GetRequestStub(string key, string domain, string cobrand, string siteid)
-            : base(key, domain, cobrand, siteid)
-        {
+            : base(new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) }) {
         }
 
         public string DevKey
         {
-            get { return _DevKey; }
+            get { return _Settings.DevKey; }
         }
 
         public string Domain
         {
-            get { return _Domain; }
+            get { return _Settings.TargetSite.Domain; }
         }
 
         public string CobrandCode
         {
-            get { return _CobrandCode; }
+            get { return _Settings.CobrandCode; }
         }
 
         public string SiteID
         {
-            get { return _SiteID; }
+            get { return _Settings.SiteId; }
         }
 
         public string RequestURL
