@@ -6,7 +6,7 @@ using RestSharp;
 using System.Collections.Generic;
 
 namespace com.careerbuilder.api.framework.requests {
-    internal abstract class GetRequest {
+    public abstract class GetRequest {
         protected APISettings _Settings = null;
 
         protected IRestClient _client = new RestClient();

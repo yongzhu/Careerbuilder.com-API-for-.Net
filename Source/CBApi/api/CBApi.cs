@@ -37,6 +37,12 @@ namespace com.careerbuilder.api {
             _Settings.DevKey = key;
         }
 
+        protected internal CbApi(string key, int timeout) {
+            _Settings.TargetSite = new CareerBuilderCom();
+            _Settings.DevKey = key;
+            _Settings.TimeoutMS = timeout;
+        }
+
         protected internal CbApi(string key, string cobrandCode) {
             _Settings.TargetSite = new CareerBuilderCom();
             _Settings.DevKey = key;

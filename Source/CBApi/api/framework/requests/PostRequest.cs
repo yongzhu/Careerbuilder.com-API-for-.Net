@@ -6,7 +6,7 @@ using RestSharp;
 
 namespace com.careerbuilder.api.framework.requests
 {
-    internal abstract class PostRequest
+    public abstract class PostRequest
     {
         private APISettings _Settings = null;
         protected IRestClient _client = new RestClient();
