@@ -13,7 +13,6 @@ namespace com.careerbuilder.api {
 
         public APIException(string message,List<string> errors) : base(message) {
             APIErrors = errors;
-            APIErrors.Add(message);
         }
     }
 }

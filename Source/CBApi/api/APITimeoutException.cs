@@ -7,6 +7,7 @@ namespace com.careerbuilder.api {
     public class APITimeoutException : APIException {
         public APITimeoutException(string message)
             : base(message) {
+            APIErrors.Add(message);
         }
     }
 }

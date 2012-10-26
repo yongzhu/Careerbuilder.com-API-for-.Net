@@ -68,13 +68,13 @@ namespace com.careerbuilder.api.framework.requests {
                     }
                 }
                 if (errors.Count > 0) {
-                    throw new APIException("Invalid API request", errors);
+                    throw new APIException(errors[0], errors);
                 }
             }
             
             if (response.ResponseStatus == ResponseStatus.TimedOut) {
                 throw new APITimeoutException(response.ErrorMessage);
-            } else if (response.ResponseStatus != ResponseStatus.None) {
+            } else if (response.ResponseStatus != ResponseStatus.Completed) {
                 throw new APIException(response.ErrorMessage);
             }    
        }

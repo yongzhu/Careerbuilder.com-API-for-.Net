@@ -56,7 +56,7 @@ namespace com.careerbuilder.api.framework.requests
                     }
                 }
                 if (errors.Count > 0) {
-                    throw new APIException("Invalid API request",errors);
+                    throw new APIException(errors[0], errors);
                 }
             }
 
