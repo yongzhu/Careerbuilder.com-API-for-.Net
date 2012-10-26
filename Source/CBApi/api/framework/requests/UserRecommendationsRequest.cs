@@ -33,6 +33,7 @@ namespace com.careerbuilder.api.framework.requests
             _request.AddParameter("ExternalID", _ExternalID);
             _request.RootElement = "RecommendJobResults";
             IRestResponse<List<RecommendJobResult>> response = _client.Execute<List<RecommendJobResult>>(_request);
+            CheckForErrors(response);
             return response.Data;
         }
     }

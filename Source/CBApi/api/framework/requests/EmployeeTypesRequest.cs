@@ -39,6 +39,7 @@ namespace com.careerbuilder.api.framework.requests
             _request.AddParameter("CountryCode", _countryCode);
             _request.RootElement = "EmployeeTypes";
             IRestResponse<List<EmployeeType>> response = _client.Execute<List<EmployeeType>>(_request);
+            CheckForErrors(response);
             return response.Data;
         }
 

@@ -19,6 +19,7 @@ namespace com.careerbuilder.api.framework.requests
             base.BeforeRequest();
             _request.AddBody(app);
             IRestResponse<ResponseApplication> response = _client.Execute<ResponseApplication>(_request);
+            CheckForErrors(response);
             return response.Data;
         }
     }

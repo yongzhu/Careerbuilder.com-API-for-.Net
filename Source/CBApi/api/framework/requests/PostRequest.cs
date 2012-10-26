@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 using RestSharp;
 
 namespace com.careerbuilder.api.framework.requests
@@ -41,6 +43,28 @@ namespace com.careerbuilder.api.framework.requests
             _client.BaseUrl = PostRequestURL();
             _request.RequestFormat = DataFormat.Xml;
             _request.Timeout = _Settings.TimeoutMS;
+        }
+
+        protected virtual void CheckForErrors(IRestResponse response) {
+            if (!string.IsNullOrEmpty(response.Content)) {
+                var errors = new List<string>();
+                var xml = new XmlDocument();
+                xml.LoadXml(response.Content);
+                foreach (XmlNode item in xml.SelectNodes("//Error")) {
+                    if (!string.IsNullOrEmpty(item.InnerText)) {
+                        errors.Add(item.InnerText);
+                    }
+                }
+                if (errors.Count > 0) {
+                    throw new APIException("Invalid API request",errors);
+                }
+            }
+
+            if (response.ResponseStatus == ResponseStatus.TimedOut) {
+                throw new APITimeoutException(response.ErrorMessage);
+            } else if (response.ResponseStatus != ResponseStatus.None) {
+                throw new APIException(response.ErrorMessage);
+            }
         }
     }
 }

@@ -37,6 +37,7 @@ namespace com.careerbuilder.api.framework.requests
             _request.AddParameter("DID", _jobDid);
             _request.RootElement = "Job";
             IRestResponse<Job> response = _client.Execute<Job>(_request);
+            CheckForErrors(response);
             return response.Data;
         }
     }

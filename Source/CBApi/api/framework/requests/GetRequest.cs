@@ -63,10 +63,12 @@ namespace com.careerbuilder.api.framework.requests {
                 var xml = new XmlDocument();
                 xml.LoadXml(response.Content);
                 foreach (XmlNode item in xml.SelectNodes("//Error")) {
-                    errors.Add(item.InnerText);
+                    if (!string.IsNullOrEmpty(item.InnerText)) {
+                        errors.Add(item.InnerText);
+                    }
                 }
                 if (errors.Count > 0) {
-                    throw new APIException("Invalid API request");
+                    throw new APIException("Invalid API request", errors);
                 }
             }
             
@@ -74,9 +76,7 @@ namespace com.careerbuilder.api.framework.requests {
                 throw new APITimeoutException(response.ErrorMessage);
             } else if (response.ResponseStatus != ResponseStatus.None) {
                 throw new APIException(response.ErrorMessage);
-            }
-
-            
+            }    
        }
     }
 }

@@ -39,6 +39,7 @@ namespace com.careerbuilder.api.framework.requests
             _request.AddParameter("CountryCode", _countryCode);
             _request.RootElement = "Categories";
             IRestResponse<List<Category>> response = _client.Execute<List<Category>>(_request);
+            CheckForErrors(response);
             return response.Data;
         }
 

@@ -48,6 +48,7 @@ namespace com.careerbuilder.api.framework.requests
             base.BeforeRequest();
             AddParametersToRequest();
             IRestResponse<ResponseJobSearch> response = _client.Execute<ResponseJobSearch>(_request);
+            CheckForErrors(response);
             return response.Data;
         }
 

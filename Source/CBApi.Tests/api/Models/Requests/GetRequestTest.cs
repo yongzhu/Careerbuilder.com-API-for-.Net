@@ -122,7 +122,6 @@ namespace Tests.com.careerbuilder.api.Requests
             restReq.Setup(x => x.AddParameter("DeveloperKey", "DevKey"));
             restReq.Setup(x => x.AddParameter("CoBrand", "this is a cobrand"));
             restReq.Setup(x => x.AddParameter("SiteID", "this is a siteid"));
-            restReq.SetupSet(x => x.Timeout = 15000);
 
             var restClient = new Mock<IRestClient>();
             request.Request = restReq.Object;
