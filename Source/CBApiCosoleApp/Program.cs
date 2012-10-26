@@ -55,7 +55,7 @@ namespace CBApiCosoleApp {
             //Console.WriteLine(myJob.JobTitle);
 
             //Make a call to https://api.careerbuilder.com/v2/application/blank
-            BlankApplication myApp = svc.GetBlankApplication("JHT26F6TBMJ9P3VCF09");
+            BlankApplication myApp = svc.GetBlankApplication("JHT26F6TBMJ9P3VC111");
 
             //Make a call to https://api.careerbuilder.com/v2/application/submit in test mode
             myApp.Test = true;

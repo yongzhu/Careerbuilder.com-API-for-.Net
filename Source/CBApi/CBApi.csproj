@@ -45,8 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
+    <Compile Include="api\APIException.cs" />
     <Compile Include="api\APISettings.cs" />
     <Compile Include="api\CBApi.cs" />
+    <Compile Include="api\APITimeoutException.cs" />
+    <Compile Include="api\ErrorResponse.cs" />
     <Compile Include="api\framework\requests\ApplicationFormRequest.cs" />
     <Compile Include="api\framework\requests\AuthTokenRequest.cs" />
     <Compile Include="api\framework\requests\OAuthRedirectBuilder.cs" />

@@ -13,7 +13,7 @@ namespace com.careerbuilder.api {
             DevKey = "";
             CobrandCode = "";
             SiteId = "";
-            TimeoutMS = 1000;
+            TimeoutMS = 30000;
         }
     }
 }

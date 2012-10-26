@@ -23,7 +23,6 @@ namespace com.careerbuilder.api {
             get { return _Settings.SiteId; }
             set { _Settings.SiteId = value; }
         }
-
         #endregion
 
         #region construction and factories
@@ -79,23 +78,6 @@ namespace com.careerbuilder.api {
             return req.OAuthUri();
         }
 
-
-        /// <summary>
-        /// Make a call to /v1/categories
-        /// </summary>
-        /// <returns>A Category Request to query against</returns>
-        public ICategoryRequest GetCategories() {
-            return new CategoriesRequest(_Settings);
-        }
-
-        /// <summary>
-        /// Make a call to /v1/employeetypes
-        /// </summary>
-        /// <returns>A Employee Request to query against</returns>
-        public IEmployeeTypesRequest GetEmployeeTypes() {
-            return new EmployeeTypesRequest(_Settings);
-        }
-
         /// <summary>
         /// Make a call to /v1/application/blank
         /// </summary>
@@ -127,6 +109,22 @@ namespace com.careerbuilder.api {
         }
 
         /// <summary>
+        /// Make a call to /v1/categories
+        /// </summary>
+        /// <returns>A Category Request to query against</returns>
+        public ICategoryRequest GetCategories() {
+            return new CategoriesRequest(_Settings);
+        }
+
+        /// <summary>
+        /// Make a call to /v1/employeetypes
+        /// </summary>
+        /// <returns>A Employee Request to query against</returns>
+        public IEmployeeTypesRequest GetEmployeeTypes() {
+            return new EmployeeTypesRequest(_Settings);
+        }
+     
+        /// <summary>
         /// Make a call to /v1/job
         /// </summary>
         /// <param name="JobDID">The unique ID of the job</param>
@@ -137,7 +135,7 @@ namespace com.careerbuilder.api {
         }
 
         /// <summary>
-        /// Make a call to /v1/job
+        /// Make a call to /v1/recommendations/forjob
         /// </summary>
         /// <param name="JobDID">The unique ID of the job</param>
         /// <returns>The job</returns>

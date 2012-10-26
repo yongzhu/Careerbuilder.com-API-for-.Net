@@ -38,6 +38,7 @@ namespace com.careerbuilder.api.framework.requests
             _request.AddParameter("JobDID", JobDid);
             _request.RootElement = "BlankApplication";
             IRestResponse<BlankApplication> response = _client.Execute<BlankApplication>(_request);
+            CheckForErrors(response);
             BlankApplication app = response.Data;
             if (app != null)
             {
