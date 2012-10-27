@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using com.careerbuilder.api.models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api.models;
-using com.careerbuilder.api;
+using System;
+using System.Collections.Generic;
 using Tests.com.careerbuilder.api.models.requests;
 
-namespace Tests.com.careerbuilder.api.Requests
+namespace Tests.com.careerbuilder.api.framework.requests
 {
     [TestClass]
     public class UserRecommendationsRequestTest
@@ -72,50 +70,10 @@ namespace Tests.com.careerbuilder.api.Requests
             request.Request = restReq.Object;
             request.Client = restClient.Object;
 
-            //Assert//
+            //Assert
             List<RecommendJobResult> resp = request.GetRecommendations();
             restReq.VerifyAll();
             restClient.VerifyAll();
-        }
-    }
-
-    internal class UserReqStub : UserRecommendationsRequest
-    {
-        public UserReqStub(string externalID, string key, string domain, string cobrand, string siteid)
-            : base(externalID, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) })
-        {
-        }
-
-        public string ExternalID
-        {
-            get { return _ExternalID; }
-        }
-
-        public string DevKey
-        {
-            get { return _Settings.DevKey; }
-        }
-
-        public string Domain
-        {
-            get { return _Settings.TargetSite.Domain; }
-        }
-
-        public string RequestURL
-        {
-            get { return base.GetRequestURL(); }
-        }
-
-        public IRestClient Client
-        {
-            get { return _client; }
-            set { _client = value; }
-        }
-
-        public IRestRequest Request
-        {
-            get { return _request; }
-            set { _request = value; }
         }
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
+﻿using com.careerbuilder.api.framework.requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api.models;
+using System;
 using System.Web;
 
-namespace Tests.com.careerbuilder.api.Requests {
+namespace Tests.com.careerbuilder.api.framework.requests {
     [TestClass]
     public class OAuthRedirectBuilderTest {
         [TestMethod]

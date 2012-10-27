@@ -31,15 +31,13 @@ namespace com.careerbuilder.api.framework.requests {
             }
         }
 
-        public virtual string BaseURL {
-            get { throw new NotImplementedException(); }
-        }
+        public abstract string BaseUrl { get; }
 
         protected virtual string GetRequestURL() {
             var url = new StringBuilder(20);
             url.Append("https://");
             url.Append(_Settings.TargetSite.Domain);
-            url.Append(BaseURL);
+            url.Append(this.BaseUrl);
             return url.ToString();
         }
 
@@ -58,25 +56,7 @@ namespace com.careerbuilder.api.framework.requests {
         }
 
         protected virtual void CheckForErrors(IRestResponse response) {
-            if (!string.IsNullOrEmpty(response.Content)) {
-                var errors = new List<string>();
-                var xml = new XmlDocument();
-                xml.LoadXml(response.Content);
-                foreach (XmlNode item in xml.SelectNodes("//Error")) {
-                    if (!string.IsNullOrEmpty(item.InnerText)) {
-                        errors.Add(item.InnerText);
-                    }
-                }
-                if (errors.Count > 0) {
-                    throw new APIException(errors[0], errors);
-                }
-            }
-            
-            if (response.ResponseStatus == ResponseStatus.TimedOut) {
-                throw new APITimeoutException(response.ErrorMessage);
-            } else if (response.ResponseStatus != ResponseStatus.Completed) {
-                throw new APIException(response.ErrorMessage);
-            }    
+            ErrorParser.CheckForErrors(response);
        }
     }
 }

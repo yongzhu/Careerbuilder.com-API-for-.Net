@@ -67,9 +67,9 @@ namespace com.careerbuilder.api {
         /// <param name="code">20 character long OAuth authorization grant code returned from auth/prompt redirection.</param>
         /// <param name="redirectUri">URL that was provided at the time of external client registration.</param>
         /// <returns></returns>
-        AccessToken ICBApi.GetAccessToken(string clientId, string clientSecret, string code, string redirectUri) {
+        public AccessToken GetAccessToken(string clientId, string clientSecret, string code, string redirectUri) {
             var req = new AuthTokenRequest(clientId, clientSecret, code, redirectUri, _Settings);
-            return req.GetAccessToken(); ;
+            return req.GetAccessToken();
         }
         
         /// <summary>
@@ -79,7 +79,7 @@ namespace com.careerbuilder.api {
         /// <param name="redirectUri"></param>
         /// <param name="permissions"></param>
         /// <returns></returns>
-        Uri ICBApi.GetOAuthRedirectUri(string clientId, string redirectUri, string permissions) {
+        public Uri GetOAuthRedirectUri(string clientId, string redirectUri, string permissions) {
             var req = new OAuthRedirectBuilder(clientId, redirectUri, permissions, _Settings.TargetSite.Domain);
             return req.OAuthUri();
         }

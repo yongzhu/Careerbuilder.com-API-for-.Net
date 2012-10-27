@@ -1,13 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api;
-using com.careerbuilder.api.models.service;
+using System;
 using Tests.com.careerbuilder.api.models.requests;
 
-namespace Tests.com.careerbuilder.api.Requests
+namespace Tests.com.careerbuilder.api.framework.requests
 {
     [TestClass]
     public class GetRequestTest
@@ -97,21 +94,6 @@ namespace Tests.com.careerbuilder.api.Requests
         }
 
         [TestMethod]
-        public void BaseURL_ThrowsException_IfNotOverridden()
-        {
-            var request = new GetRequestStub("DevKey", "api.careerbuilder.com", "", "SiteID");
-            try
-            {
-                string temp = request.BaseURL;
-                Assert.Fail();
-            }
-            catch (NotImplementedException ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof (NotImplementedException));
-            }
-        }
-
-        [TestMethod]
         public void BeforeRequest_SetsDevKey_AndDomain_AndCobrand_AndSiteID()
         {
             //Setup
@@ -128,65 +110,8 @@ namespace Tests.com.careerbuilder.api.Requests
             request.Client = restClient.Object;
 
             //Assert
-            try
-            {
-                request.RunBeforeGet();
-                Assert.Fail();
-            }
-            catch (NotImplementedException ex)
-            {
-                restReq.VerifyAll();
-                Assert.IsInstanceOfType(ex, typeof (NotImplementedException));
-            }
-        }
-    }
-
-    internal class GetRequestStub : GetRequest
-    {
-        public GetRequestStub(string key, string domain, string cobrand, string siteid)
-            : base(new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) }) {
-        }
-
-        public string DevKey
-        {
-            get { return _Settings.DevKey; }
-        }
-
-        public string Domain
-        {
-            get { return _Settings.TargetSite.Domain; }
-        }
-
-        public string CobrandCode
-        {
-            get { return _Settings.CobrandCode; }
-        }
-
-        public string SiteID
-        {
-            get { return _Settings.SiteId; }
-        }
-
-        public string RequestURL
-        {
-            get { return base.GetRequestURL(); }
-        }
-
-        public IRestClient Client
-        {
-            get { return _client; }
-            set { _client = value; }
-        }
-
-        public IRestRequest Request
-        {
-            get { return _request; }
-            set { _request = value; }
-        }
-
-        public void RunBeforeGet()
-        {
-            BeforeRequest();
+            request.RunBeforeGet();
+            restReq.VerifyAll();
         }
     }
 }

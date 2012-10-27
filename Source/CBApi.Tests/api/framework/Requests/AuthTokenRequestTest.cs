@@ -1,13 +1,11 @@
-﻿using System;
+﻿using com.careerbuilder.api.models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api.models;
-using com.careerbuilder.api;
+using System;
 using Tests.com.careerbuilder.api.models.requests;
 
-namespace Tests.com.careerbuilder.api.Requests {
+namespace Tests.com.careerbuilder.api.framework.requests {
     [TestClass]
     public class AuthTokenRequestTest {
         [TestMethod]
@@ -134,49 +132,6 @@ namespace Tests.com.careerbuilder.api.Requests {
             AccessToken resp = request.GetAccessToken();
             restReq.VerifyAll();
             restClient.VerifyAll();
-        }
-    }
-
-    internal class AuthTokenRequestStub : AuthTokenRequest {
-        public AuthTokenRequestStub(string clientId, string clientSecret, string code, string redirectUri, string key, string domain, string cobrand, string siteid)
-            : base(clientId, clientSecret, code, redirectUri, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) }) {
-        }
-
-        public string ClientId {
-            get { return _ClientId; }
-            set { _ClientId = value; }
-        }
-
-        public string ClientSecret {
-            get { return _ClientSecret; }
-            set { _ClientSecret = value; }
-        }
-
-
-        public string Code {
-            get { return _Code; }
-            set { _Code = value; }
-        }
-
-
-        public string RedirectUri {
-            get { return _RedirectUri; }
-            set { _RedirectUri = value; }
-        }
-
-
-        public string RequestURL {
-            get { return base.GetRequestURL(); }
-        }
-
-        public IRestClient Client {
-            get { return _client; }
-            set { _client = value; }
-        }
-
-        public IRestRequest Request {
-            get { return _request; }
-            set { _request = value; }
         }
     }
 }

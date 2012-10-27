@@ -1,13 +1,11 @@
-﻿using System;
+﻿using com.careerbuilder.api.models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api.models;
-using com.careerbuilder.api;
+using System;
 using Tests.com.careerbuilder.api.models.requests;
 
-namespace Tests.com.careerbuilder.api.Requests
+namespace Tests.com.careerbuilder.api.framework.requests
 {
     [TestClass]
     public class JobRequestTest
@@ -124,46 +122,6 @@ namespace Tests.com.careerbuilder.api.Requests
             Assert.AreSame(response.Data, myJob);
             restReq.VerifyAll();
             restClient.VerifyAll();
-        }
-    }
-
-    internal class JobRequestStub : JobRequest
-    {
-        public JobRequestStub(string jobdid, string key, string domain, string cobrand, string siteid)
-            : base(jobdid, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) })
-        {
-        }
-
-        public string DevKey
-        {
-            get { return _Settings.DevKey; }
-        }
-
-        public string Domain
-        {
-            get { return _Settings.TargetSite.Domain; }
-        }
-
-        public string JobDID
-        {
-            get { return _jobDid; }
-        }
-
-        public string RequestURL
-        {
-            get { return base.GetRequestURL(); }
-        }
-
-        public IRestClient Client
-        {
-            get { return _client; }
-            set { _client = value; }
-        }
-
-        public IRestRequest Request
-        {
-            get { return _request; }
-            set { _request = value; }
         }
     }
 }

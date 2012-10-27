@@ -1,14 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api.models;
+﻿using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.responses;
 using com.careerbuilder.api.models.service;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using RestSharp;
 using Tests.com.careerbuilder.api.models.requests;
-using com.careerbuilder.api;
 
-namespace Tests.com.careerbuilder.api.Requests
+namespace Tests.com.careerbuilder.api.framework.requests
 {
     [TestClass]
     public class JobSearchRequestTest
@@ -82,46 +80,6 @@ namespace Tests.com.careerbuilder.api.Requests
             ResponseJobSearch resp = request.WhereCountryCode(CountryCode.NL).Search();
             restReq.Verify();
             restClient.VerifyAll();
-        }
-    }
-
-    internal class JobSearchStub : JobSearchRequest
-    {
-        public JobSearchStub(string key, string domain, string cobrand, string siteid)
-            : base(new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) })
-        {
-        }
-
-        public string DevKey
-        {
-            get { return _Settings.DevKey; }
-        }
-
-        public string Domain
-        {
-            get { return _Settings.TargetSite.Domain; }
-        }
-
-        public string CountryCode
-        {
-            get { return _CountryCode; }
-        }
-
-        public string RequestURL
-        {
-            get { return base.GetRequestURL(); }
-        }
-
-        public IRestClient Client
-        {
-            get { return _client; }
-            set { _client = value; }
-        }
-
-        public IRestRequest Request
-        {
-            get { return _request; }
-            set { _request = value; }
         }
     }
 }

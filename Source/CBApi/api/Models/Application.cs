@@ -11,7 +11,6 @@ namespace com.careerbuilder.api.models
         public bool Test { get; set; }
         public string SiteID { get; set; }
         public string CoBrand { get; set; }
-        public List<Question> Questions { get; set; }
         public Resume Resume { get; set; }
 
         public void AttachResumeFile(string fileName, byte[] resumeFile)

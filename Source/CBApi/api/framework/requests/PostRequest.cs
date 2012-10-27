@@ -24,10 +24,7 @@ namespace com.careerbuilder.api.framework.requests
             }
         }
 
-        public virtual string BaseUrl
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public abstract string BaseUrl { get;}
 
         protected virtual string PostRequestURL()
         {
@@ -46,25 +43,7 @@ namespace com.careerbuilder.api.framework.requests
         }
 
         protected virtual void CheckForErrors(IRestResponse response) {
-            if (!string.IsNullOrEmpty(response.Content)) {
-                var errors = new List<string>();
-                var xml = new XmlDocument();
-                xml.LoadXml(response.Content);
-                foreach (XmlNode item in xml.SelectNodes("//Error")) {
-                    if (!string.IsNullOrEmpty(item.InnerText)) {
-                        errors.Add(item.InnerText);
-                    }
-                }
-                if (errors.Count > 0) {
-                    throw new APIException(errors[0], errors);
-                }
-            }
-
-            if (response.ResponseStatus == ResponseStatus.TimedOut) {
-                throw new APITimeoutException(response.ErrorMessage);
-            } else if (response.ResponseStatus != ResponseStatus.None) {
-                throw new APIException(response.ErrorMessage);
-            }
+            ErrorParser.CheckForErrors(response);
         }
     }
 }

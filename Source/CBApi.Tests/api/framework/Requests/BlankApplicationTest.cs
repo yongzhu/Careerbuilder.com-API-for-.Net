@@ -1,13 +1,14 @@
-﻿using System;
+﻿using com.careerbuilder.api;
+using com.careerbuilder.api.framework.requests;
+using com.careerbuilder.api.models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
-using com.careerbuilder.api.framework.requests;
-using com.careerbuilder.api.models;
-using com.careerbuilder.api;
+using System;
 using Tests.com.careerbuilder.api.models.requests;
+using Tests.com.careerbuilder.api.models.service;
 
-namespace Tests.com.careerbuilder.api.Requests
+namespace Tests.com.careerbuilder.api.framework.requests
 {
     [TestClass]
     public class BlankApplicationTest
@@ -139,6 +140,10 @@ namespace Tests.com.careerbuilder.api.Requests
         {
             get { return _request; }
             set { _request = value; }
+        }
+
+        protected override void CheckForErrors(IRestResponse response) {
+
         }
     }
 }

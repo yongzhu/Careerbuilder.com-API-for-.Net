@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 
 namespace com.careerbuilder.api {
+    [Serializable]
     public class APIException : Exception {
 
         public List<string> APIErrors { get; set; }
         public APIException(string message) : base(message){
+            APIErrors = new List<string>();
             APIErrors.Add(message);
         }
 
