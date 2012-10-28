@@ -9,7 +9,7 @@ using com.careerbuilder.api.models.service;
 namespace CBApiCosoleApp {
     internal class Program {
         private static void Main(string[] args) {
-            ICBApi svc = API.GetInstance("WTV13M6PWYRJLFJL2G7");
+            ICBApi svc = API.GetInstance("EnterDevKey");
 
 
             ////ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\framework\ErrorParserTests.cs" />
+    <Compile Include="api\framework\requests\ApplicationFormRequestTest.cs" />
     <Compile Include="api\framework\stubrequests\AuthTokenRequestStub.cs" />
     <Compile Include="api\framework\requests\CategoriesRequestTest.cs" />
     <Compile Include="api\framework\requests\BlankApplicationTest.cs" />
