@@ -56,24 +56,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\framework\ErrorParserTests.cs" />
+    <Compile Include="api\framework\requests\BlankAppStub.cs" />
+    <Compile Include="api\framework\requests\SubmitApplicationRequestTest.cs" />
+    <Compile Include="api\framework\requests\PostRequestTest.cs" />
+    <Compile Include="api\framework\requests\GetRequestTest.cs" />
     <Compile Include="api\framework\requests\ApplicationFormRequestTest.cs" />
     <Compile Include="api\framework\stubrequests\AuthTokenRequestStub.cs" />
     <Compile Include="api\framework\requests\CategoriesRequestTest.cs" />
     <Compile Include="api\framework\requests\BlankApplicationTest.cs" />
     <Compile Include="api\framework\requests\AuthTokenRequestTest.cs" />
     <Compile Include="api\framework\stubrequests\CategoriesStub.cs" />
+    <Compile Include="api\framework\stubrequests\SubmitApplicationRequestStub.cs" />
+    <Compile Include="api\framework\stubrequests\PostRequestStub.cs" />
     <Compile Include="api\framework\stubrequests\EmployeeTypesStub.cs" />
     <Compile Include="api\framework\stubrequests\GetRequestStub.cs" />
     <Compile Include="api\framework\stubrequests\JobRequestStub.cs" />
     <Compile Include="api\framework\stubrequests\JobSearchStub.cs" />
     <Compile Include="api\framework\requests\OAuthRedirectBuilderTest.cs" />
+    <Compile Include="api\models\BlankApplicationTest.cs" />
+    <Compile Include="api\models\ApplicationRequirementsTest.cs" />
+    <Compile Include="api\models\QuestionTest.cs" />
     <Compile Include="api\models\JobSearchResultTest.cs" />
     <Compile Include="api\models\ResponseJobSearchTest.cs" />
     <Compile Include="api\models\service\TargetSiteMock.cs" />
     <Compile Include="api\framework\requests\UserRecommendationsRequestTest.cs" />
     <Compile Include="api\framework\requests\JobSearchRequestTest.cs" />
     <Compile Include="api\framework\requests\JobRequestTest.cs" />
-    <Compile Include="api\framework\requests\GetRequestTest.cs" />
     <Compile Include="api\framework\requests\EmployeeTypesRequestTest.cs" />
     <Compile Include="api\framework\stubrequests\UserReqStub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,7 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="api\models\ResponseJobSearch.xml">
+    <Content Include="testdata\ResponseBlankApplication.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\ResponseJobSearch.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

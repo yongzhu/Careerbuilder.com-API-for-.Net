@@ -14,7 +14,7 @@ namespace Tests.com.careerbuilder.api.models {
     [TestClass]
     public class ResponseJobSearchTest {
         [TestMethod]
-        [DeploymentItem("api\\Models\\ResponseJobSearch.xml")]
+        [DeploymentItem("testdata\\ResponseJobSearch.xml")]
         public void DeserializationWorks_WhenPassedRightXML() {
             var xmlpath = Path.Combine(Environment.CurrentDirectory,"ResponseJobSearch.xml");
             var doc = XDocument.Load(xmlpath);

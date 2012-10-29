@@ -4,98 +4,75 @@ using RestSharp;
 using System;
 using Tests.com.careerbuilder.api.models.requests;
 
-namespace Tests.com.careerbuilder.api.framework.requests
-{
+namespace Tests.com.careerbuilder.api.framework.requests {
     [TestClass]
-    public class GetRequestTest
-    {
+    public class GetRequestTest {
         [TestMethod]
-        public void Constructor_ThrowsException_OnEmptyDevKey()
-        {
-            try
-            {
+        public void Constructor_ThrowsException_OnEmptyDevKey() {
+            try {
                 var request = new GetRequestStub("", "api.careerbuilder.com", "", "");
                 Assert.Fail();
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof (ArgumentNullException));
+            } catch (ArgumentNullException ex) {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
 
         [TestMethod]
-        public void Constructor_ThrowsException_OnNullDevKey()
-        {
-            try
-            {
+        public void Constructor_ThrowsException_OnNullDevKey() {
+            try {
                 var request = new GetRequestStub(null, "api.careerbuilder.com", "", "");
                 Assert.Fail();
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof (ArgumentNullException));
+            } catch (ArgumentNullException ex) {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
 
         [TestMethod]
-        public void Constructor_ThrowsException_OnEmptyDomain()
-        {
-            try
-            {
+        public void Constructor_ThrowsException_OnEmptyDomain() {
+            try {
                 var request = new GetRequestStub("DevKey", "", "", "");
                 Assert.Fail();
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof (ArgumentNullException));
+            } catch (ArgumentNullException ex) {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
 
         [TestMethod]
-        public void Constructor_ThrowsException_OnNullDomain()
-        {
-            try
-            {
+        public void Constructor_ThrowsException_OnNullDomain() {
+            try {
                 var request = new GetRequestStub("DevKey", null, "", "");
                 Assert.Fail();
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof (ArgumentNullException));
+            } catch (ArgumentNullException ex) {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
 
         [TestMethod]
-        public void Constructor_SetsDevKey()
-        {
+        public void Constructor_SetsDevKey() {
             var request = new GetRequestStub("DevKey", "api.careerbuilder.com", "", "");
             Assert.AreEqual("DevKey", request.DevKey);
         }
 
         [TestMethod]
-        public void Constructor_SetsDomain()
-        {
+        public void Constructor_SetsDomain() {
             var request = new GetRequestStub("DevKey", "api.careerbuilder.com", "", "");
             Assert.AreEqual("api.careerbuilder.com", request.Domain);
         }
 
         [TestMethod]
-        public void Constructor_SetsCobrand()
-        {
+        public void Constructor_SetsCobrand() {
             var request = new GetRequestStub("DevKey", "api.careerbuilder.com", "cobrandcode", "");
             Assert.AreEqual("cobrandcode", request.CobrandCode);
         }
 
         [TestMethod]
-        public void Constructor_SetsSiteID()
-        {
+        public void Constructor_SetsSiteID() {
             var request = new GetRequestStub("DevKey", "api.careerbuilder.com", "", "SiteID");
             Assert.AreEqual("SiteID", request.SiteID);
         }
 
         [TestMethod]
-        public void BeforeRequest_SetsDevKey_AndDomain_AndCobrand_AndSiteID()
-        {
+        public void BeforeRequest_SetsDevKey_AndDomain_AndCobrand_AndSiteID() {
             //Setup
             var request = new GetRequestStub("DevKey", "api.careerbuilder.com", "this is a cobrand", "this is a siteid");
 

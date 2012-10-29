@@ -59,6 +59,7 @@
     <Compile Include="api\framework\requests\SubmitApplicationRequest.cs" />
     <Compile Include="api\ICBApi.cs" />
     <Compile Include="api\models\Application.cs" />
+    <Compile Include="api\models\ApplicationRequirements.cs" />
     <Compile Include="api\models\Bucket.cs" />
     <Compile Include="api\models\AccessToken.cs" />
     <Compile Include="api\models\Item.cs" />
