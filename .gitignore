@@ -10,6 +10,5 @@ Source/TestResults/
 _ReSharper.*/
 *.user
 *.trx
-[Tt]est[Dd]ata/
 Thumbs.db
 TestResults
