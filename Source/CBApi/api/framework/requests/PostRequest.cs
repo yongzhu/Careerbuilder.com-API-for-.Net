@@ -40,6 +40,9 @@ namespace com.careerbuilder.api.framework.requests
             _client.BaseUrl = PostRequestURL();
             _request.RequestFormat = DataFormat.Xml;
             _request.Timeout = _Settings.TimeoutMS;
+            if (!string.IsNullOrEmpty(_Settings.TargetSite.Host)) {
+                _request.AddHeader("Host", _Settings.TargetSite.Host);
+            }
         }
 
         protected virtual void CheckForErrors(IRestResponse response) {

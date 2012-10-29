@@ -42,6 +42,7 @@ namespace com.careerbuilder.api.framework.requests {
         }
 
         protected virtual void BeforeRequest() {
+            _client.BaseUrl = GetRequestURL();
             _request.AddParameter("DeveloperKey", _Settings.DevKey);
 
             if (!string.IsNullOrEmpty(_Settings.CobrandCode)) {
@@ -52,7 +53,9 @@ namespace com.careerbuilder.api.framework.requests {
                 _request.AddParameter("SiteID", _Settings.SiteId);
             }
             _request.Timeout = _Settings.TimeoutMS;
-            _client.BaseUrl = GetRequestURL();
+            if (!string.IsNullOrEmpty(_Settings.TargetSite.Host)) {
+                _request.AddHeader("Host", _Settings.TargetSite.Host);
+            }
         }
 
         protected virtual void CheckForErrors(IRestResponse response) {
