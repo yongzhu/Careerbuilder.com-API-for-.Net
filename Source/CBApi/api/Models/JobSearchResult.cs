@@ -3,6 +3,7 @@
     public class JobSearchResult
     {
         public string Company { get; set; }
+        public string CompanyDID { get; set; }
         public string CompanyDetailsURL { get; set; }
         public string DID { get; set; }
         public string OnetCode { get; set; }

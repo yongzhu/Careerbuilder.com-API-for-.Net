@@ -46,6 +46,8 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -65,6 +67,8 @@
     <Compile Include="api\framework\stubrequests\JobRequestStub.cs" />
     <Compile Include="api\framework\stubrequests\JobSearchStub.cs" />
     <Compile Include="api\framework\requests\OAuthRedirectBuilderTest.cs" />
+    <Compile Include="api\models\JobSearchResultTest.cs" />
+    <Compile Include="api\models\ResponseJobSearchTest.cs" />
     <Compile Include="api\models\service\TargetSiteMock.cs" />
     <Compile Include="api\framework\requests\UserRecommendationsRequestTest.cs" />
     <Compile Include="api\framework\requests\JobSearchRequestTest.cs" />
@@ -85,7 +89,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="api\models\ResponseJobSearch.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
