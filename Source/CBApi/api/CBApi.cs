@@ -110,6 +110,27 @@ namespace com.careerbuilder.api {
         /// <param name="app">The application being submited to careerbuilder</param>
         /// <returns></returns>
         public ResponseApplication SubmitApplication(Application app) {
+            RequestApplication req = new RequestApplication();
+            req.CoBrand = app.CoBrand;
+            req.DeveloperKey = app.DeveloperKey;
+            req.JobDID = app.JobDID;
+            req.SiteID = app.SiteID;
+            req.Test = app.Test;
+            req.Resume = app.Resume;
+            List<Response> responses = new List<Response>();
+            foreach (var item in app.Questions) {
+                responses.Add(new Response() { QuestionID = item.QuestionID, ResponseText = item.ResponseText });
+            }
+            req.Responses = responses;
+            return SubmitApplication(req);
+        }
+
+        /// <summary>
+        /// Submit an application to /v1/application/submit
+        /// </summary>
+        /// <param name="app">The application being submited to careerbuilder</param>
+        /// <returns></returns>
+        public ResponseApplication SubmitApplication(RequestApplication app) {
             var req = new SubmitApplicationRequest(_Settings);
             return req.Submit(app);
         }

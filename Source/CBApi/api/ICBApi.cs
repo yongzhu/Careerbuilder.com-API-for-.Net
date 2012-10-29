@@ -22,5 +22,6 @@ namespace com.careerbuilder.api
         IJobSearch JobSearch();
         ResponseJobReport JobReport(string jobDid);
         ResponseApplication SubmitApplication(Application app);
+        ResponseApplication SubmitApplication(RequestApplication app);
     }
 }

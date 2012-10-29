@@ -14,7 +14,7 @@ namespace com.careerbuilder.api.framework.requests
             get { return "/v1/application/submit"; }
         }
 
-        public ResponseApplication Submit(Application app)
+        public ResponseApplication Submit(RequestApplication app)
         {
             base.BeforeRequest();
             _request.AddBody(app);

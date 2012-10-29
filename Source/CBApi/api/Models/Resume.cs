@@ -2,7 +2,7 @@
 {
     public class Resume
     {
-        public string FileName { get; set; }
+        public string ResumeFileName { get; set; }
         public string ResumeData { get; set; }
     }
 }

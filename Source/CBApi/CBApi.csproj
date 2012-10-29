@@ -62,6 +62,8 @@
     <Compile Include="api\models\Bucket.cs" />
     <Compile Include="api\models\AccessToken.cs" />
     <Compile Include="api\models\Item.cs" />
+    <Compile Include="api\models\RequestApplication.cs" />
+    <Compile Include="api\models\Response.cs" />
     <Compile Include="api\models\ResponseJobReport.cs" />
     <Compile Include="api\models\Resume.cs" />
     <Compile Include="api\models\queryInterfaces\IJobSearch.cs" />

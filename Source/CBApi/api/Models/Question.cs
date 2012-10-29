@@ -7,5 +7,6 @@
         public bool IsRequired { get; set; }
         public string ExpectedResponseFormat { get; set; }
         public string QuestionText { get; set; }
+        public string ResponseText { get; set; }
     }
 }
