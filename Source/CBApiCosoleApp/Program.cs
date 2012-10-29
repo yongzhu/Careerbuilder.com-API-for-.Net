@@ -9,19 +9,19 @@ using com.careerbuilder.api.models.service;
 namespace CBApiCosoleApp {
     internal class Program {
         private static void Main(string[] args) {
-            ICBApi svc = API.GetInstance("EnterDevKey");
+            ICBApi svc = API.GetInstance("EnterDevKey",20000);
 
 
             ////ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
 
 
             ////Make a call to https://api.careerbuilder.com/v2/categories
-            //List<Category> codes = svc.GetCategories()
-            //    .WhereCountryCode(CountryCode.US)
-            //    .ListAll();
-            //foreach (Category code in codes) {
-            //    Console.WriteLine(code.Code);
-            //}
+            List<Category> codes = svc.GetCategories()
+                .WhereCountryCode(CountryCode.US)
+                .ListAll();
+            foreach (Category code in codes) {
+                Console.WriteLine(code.Code);
+            }
 
             ////Make a call to https://api.careerbuilder.com/v2/employeetypes
             //List<EmployeeType> emps = svc.GetEmployeeTypes()

@@ -1,4 +1,5 @@
 ﻿using com.careerbuilder.api;
+using com.careerbuilder.api.models.service;
 
 namespace com.careerbuilder
 {
@@ -26,6 +27,10 @@ namespace com.careerbuilder
         public static ICBApi GetInstance(string developerKey, string cobrandCode, string siteID)
         {
             return new CbApi(developerKey, cobrandCode, siteID);
+        }
+
+        public static ICBApi GetInstance(string developerKey, int timeoutMS, TargetSite site) {
+            return new CbApi(developerKey,timeoutMS,site);
         }
     }
 }
