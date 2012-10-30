@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.responses;
+using com.careerbuilder.api.framework.events;
 
 namespace com.careerbuilder.api
 {
     public interface ICBApi
     {
+        event BeforeRequestEvent OnBeforeRequest;
+        event AfterRequestEvent OnAfterRequest;
         string CobrandCode { get; set; }
         string DevKey { get; set; }
         string SiteId { get; set; }

@@ -51,6 +51,7 @@
     <Compile Include="api\APITimeoutException.cs" />
     <Compile Include="api\ErrorResponse.cs" />
     <Compile Include="api\framework\ErrorParser.cs" />
+    <Compile Include="api\framework\events\Events.cs" />
     <Compile Include="api\framework\requests\ApplicationFormRequest.cs" />
     <Compile Include="api\framework\requests\AuthTokenRequest.cs" />
     <Compile Include="api\framework\requests\OAuthRedirectBuilder.cs" />

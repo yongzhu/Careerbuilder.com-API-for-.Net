@@ -46,6 +46,7 @@ namespace com.careerbuilder.api.framework.requests {
             _request.AddParameter("redirect_uri", _RedirectUri);
             _request.AddParameter("code", _Code);
             IRestResponse<AccessToken> response = _client.Execute<AccessToken>(_request);
+            _AfterRequestEvent(_client, _request, response);
             CheckForErrors(response);
             return response.Data;
         }

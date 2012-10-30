@@ -5,11 +5,14 @@ using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.responses;
 using com.careerbuilder.api.models.service;
 using System;
+using com.careerbuilder.api.framework.events;
 
 namespace com.careerbuilder.api {
     public class CbApi : ICBApi {
         #region attributes
         protected APISettings _Settings = new APISettings();
+        private List<BeforeRequestEvent> _BeforeListeners = new List<BeforeRequestEvent>();
+        private List<AfterRequestEvent> _AfterListeners = new List<AfterRequestEvent>();
 
         public string DevKey { 
             get {return _Settings.DevKey;}
@@ -22,6 +25,16 @@ namespace com.careerbuilder.api {
         public string SiteId {
             get { return _Settings.SiteId; }
             set { _Settings.SiteId = value; }
+        }
+
+        public event BeforeRequestEvent OnBeforeRequest {
+            add { _BeforeListeners.Add(value); }
+            remove { _BeforeListeners.Remove(value); }
+        }
+
+        public event AfterRequestEvent OnAfterRequest {
+            add { _AfterListeners.Add(value); }
+            remove { _AfterListeners.Remove(value); }
         }
         #endregion
 
@@ -64,6 +77,18 @@ namespace com.careerbuilder.api {
 
         #endregion
 
+        private void WireBeforeRequestEvents(GetRequest req) {
+            foreach (var item in _BeforeListeners) {
+                req.OnBeforeRequest += item;
+            }
+        }
+
+        private void WireAfterRequestEvents(GetRequest req) {
+            foreach (var item in _AfterListeners) {
+                req.OnAfterRequest += item;
+            }
+        }
+
         #region api calls
         /// <summary>
         /// Make a call to /auth/token
@@ -75,6 +100,8 @@ namespace com.careerbuilder.api {
         /// <returns></returns>
         public AccessToken GetAccessToken(string clientId, string clientSecret, string code, string redirectUri) {
             var req = new AuthTokenRequest(clientId, clientSecret, code, redirectUri, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.GetAccessToken();
         }
         
@@ -97,6 +124,8 @@ namespace com.careerbuilder.api {
         /// <returns>The job</returns>
         public BlankApplication GetBlankApplication(string jobDid) {
             var req = new BlankApplicationRequest(jobDid, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.Retrieve();
         }
 
@@ -146,7 +175,10 @@ namespace com.careerbuilder.api {
         /// </summary>
         /// <returns>A Category Request to query against</returns>
         public ICategoryRequest GetCategories() {
-            return new CategoriesRequest(_Settings);
+            var req = new CategoriesRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req;
         }
 
         /// <summary>
@@ -154,7 +186,10 @@ namespace com.careerbuilder.api {
         /// </summary>
         /// <returns>A Employee Request to query against</returns>
         public IEmployeeTypesRequest GetEmployeeTypes() {
-            return new EmployeeTypesRequest(_Settings);
+            var req = new EmployeeTypesRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req;
         }
      
         /// <summary>
@@ -164,6 +199,8 @@ namespace com.careerbuilder.api {
         /// <returns>The job</returns>
         public Job GetJob(string jobDid) {
             var req = new JobRequest(jobDid, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.Retrieve();
         }
 
@@ -174,6 +211,8 @@ namespace com.careerbuilder.api {
         /// <returns>The job</returns>
         public List<RecommendJobResult> GetRecommendationsForJob(string jobDid) {
             var req = new JobRecommendationsRequest(jobDid, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.GetRecommendations();
         }
 
@@ -184,6 +223,8 @@ namespace com.careerbuilder.api {
         /// <returns></returns>
         public List<RecommendJobResult> GetRecommendationsForUser(string externalId) {
             var req = new UserRecommendationsRequest(externalId, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.GetRecommendations();
         }
 
@@ -192,7 +233,10 @@ namespace com.careerbuilder.api {
         /// </summary>
         /// <returns>A Job Request to query against</returns>
         public IJobSearch JobSearch() {
-            return new JobSearchRequest(_Settings);
+            var req = new JobSearchRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req;
         }
 
         public ResponseJobReport JobReport(string jobDid) {

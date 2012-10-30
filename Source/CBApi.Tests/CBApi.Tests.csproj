@@ -97,7 +97,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="api\framework\events\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="testdata\ResponseBlankApplication.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

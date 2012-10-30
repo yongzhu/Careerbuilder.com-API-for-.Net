@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using RestSharp;
+using com.careerbuilder.api.framework.events;
 
 namespace com.careerbuilder.api.framework.requests
 {
@@ -11,6 +12,8 @@ namespace com.careerbuilder.api.framework.requests
         private APISettings _Settings = null;
         protected IRestClient _client = new RestClient();
         protected IRestRequest _request = new RestRequest(Method.POST);
+        protected BeforeRequestEvent _BeforeRequestEvent = delegate { };
+        protected AfterRequestEvent _AfterRequestEvent = delegate { };
 
         protected PostRequest(APISettings settings)
         {
@@ -25,6 +28,16 @@ namespace com.careerbuilder.api.framework.requests
         }
 
         public abstract string BaseUrl { get;}
+
+        internal event BeforeRequestEvent OnBeforeRequest {
+            add { _BeforeRequestEvent += value; }
+            remove { _BeforeRequestEvent += value; }
+        }
+
+        internal event AfterRequestEvent OnAfterRequest {
+            add { _AfterRequestEvent += value; }
+            remove { _AfterRequestEvent += value; }
+        }
 
         protected virtual string PostRequestURL()
         {
@@ -43,6 +56,7 @@ namespace com.careerbuilder.api.framework.requests
             if (!string.IsNullOrEmpty(_Settings.TargetSite.Host)) {
                 _request.AddHeader("Host", _Settings.TargetSite.Host);
             }
+            _BeforeRequestEvent(_client, _request);
         }
 
         protected virtual void CheckForErrors(IRestResponse response) {

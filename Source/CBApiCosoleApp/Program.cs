@@ -5,12 +5,24 @@ using com.careerbuilder.api;
 using com.careerbuilder.api.models;
 using com.careerbuilder.api.models.responses;
 using com.careerbuilder.api.models.service;
+using RestSharp;
+using com.careerbuilder.api.framework.events;
 
 namespace CBApiCosoleApp {
     internal class Program {
+
+        private static void HandleBeforeRequest(IRestClient client, IRestRequest request){
+            Console.WriteLine("caught before request: " + client.BaseUrl);
+        }
+
+        private static void HandleAfterRequest(IRestClient client, IRestRequest request, IRestResponse response) {
+            Console.WriteLine("caught after request: " + response.Content);
+        }
+
         private static void Main(string[] args) {
             ICBApi svc = API.GetInstance("EnterDevKey",20000);
-
+            svc.OnBeforeRequest += new BeforeRequestEvent(HandleBeforeRequest);
+            svc.OnAfterRequest += new AfterRequestEvent(HandleAfterRequest);
 
             ////ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
 
