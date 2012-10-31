@@ -27,7 +27,7 @@ namespace com.careerbuilder.api {
             set { _Settings.SiteId = value; }
         }
 
-        public int TimeoutMS {
+        public virtual int TimeoutMS {
             get { return _Settings.TimeoutMS; }
             set { _Settings.TimeoutMS = value; }
         }
