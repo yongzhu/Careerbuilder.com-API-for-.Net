@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using com.careerbuilder.api.models.responses;
 
-namespace com.careerbuilder.api.models
-{
-    public class Application
-    {
+namespace com.careerbuilder.api.models {
+    [Serializable]
+    public class Application {
         public string DeveloperKey { get; set; }
         public string JobDID { get; set; }
         public bool Test { get; set; }
@@ -14,9 +13,8 @@ namespace com.careerbuilder.api.models
         public Resume Resume { get; set; }
         public List<Question> Questions { get; set; }
 
-        public void AttachResumeFile(string fileName, byte[] resumeFile)
-        {
-            Resume = new Resume {ResumeFileName = fileName, ResumeData = Convert.ToBase64String(resumeFile) };
+        public void AttachResumeFile(string fileName, byte[] resumeFile) {
+            Resume = new Resume { ResumeFileName = fileName, ResumeData = Convert.ToBase64String(resumeFile) };
         }
     }
 }

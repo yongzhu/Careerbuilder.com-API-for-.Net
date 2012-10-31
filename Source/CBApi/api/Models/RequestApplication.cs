@@ -1,10 +1,8 @@
-﻿using com.careerbuilder.api.models.responses;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace com.careerbuilder.api.models {
+    [Serializable]
     public class RequestApplication {
         public string DeveloperKey { get; set; }
         public string JobDID { get; set; }

@@ -2,6 +2,7 @@
 
 namespace com.careerbuilder.api.models.responses
 {
+    [Serializable]
     public class ResponseJobReport
     {
         public DateTime TimeResponseSent { get; set; }

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using com.careerbuilder.api.models.responses;
 
-namespace com.careerbuilder.api.models
-{
-    public class AccessToken
-    {
+namespace com.careerbuilder.api.models {
+    [Serializable]
+    public class AccessToken {
         public string Code { get; set; }
         public DateTime Expires { get; set; }
         public string Redirect_Uri { get; set; }

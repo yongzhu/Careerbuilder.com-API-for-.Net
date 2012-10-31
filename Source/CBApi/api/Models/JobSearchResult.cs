@@ -1,7 +1,7 @@
-﻿namespace com.careerbuilder.api.models.responses
-{
-    public class JobSearchResult
-    {
+﻿using System;
+namespace com.careerbuilder.api.models.responses {
+    [Serializable]
+    public class JobSearchResult {
         public string Company { get; set; }
         public string CompanyDID { get; set; }
         public string CompanyDetailsURL { get; set; }

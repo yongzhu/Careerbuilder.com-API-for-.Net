@@ -69,7 +69,7 @@ namespace com.careerbuilder.api.framework.requests {
             if (!string.IsNullOrEmpty(_Settings.TargetSite.Host)) {
                 _request.AddHeader("Host", _Settings.TargetSite.Host);
             }
-            _BeforeRequestEvent(_client, _request);
+            _BeforeRequestEvent(new RequestEventData(_client, _request, null));
         }
 
         protected virtual void CheckForErrors(IRestResponse response) {

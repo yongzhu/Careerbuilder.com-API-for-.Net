@@ -52,6 +52,7 @@
     <Compile Include="api\ErrorResponse.cs" />
     <Compile Include="api\framework\ErrorParser.cs" />
     <Compile Include="api\framework\events\Events.cs" />
+    <Compile Include="api\framework\RequestEventData.cs" />
     <Compile Include="api\framework\requests\ApplicationFormRequest.cs" />
     <Compile Include="api\framework\requests\AuthTokenRequest.cs" />
     <Compile Include="api\framework\requests\OAuthRedirectBuilder.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="api\framework\requests\PostRequest.cs" />
     <Compile Include="api\framework\requests\SubmitApplicationRequest.cs" />
     <Compile Include="api\ICBApi.cs" />
+    <Compile Include="api\IRequestEventData.cs" />
     <Compile Include="api\models\Application.cs" />
     <Compile Include="api\models\ApplicationRequirements.cs" />
     <Compile Include="api\models\Bucket.cs" />

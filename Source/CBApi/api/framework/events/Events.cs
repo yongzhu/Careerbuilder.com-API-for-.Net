@@ -5,6 +5,6 @@ using System.Linq;
 using System.Text;
 
 namespace com.careerbuilder.api.framework.events {
-    public delegate void BeforeRequestEvent(IRestClient client, IRestRequest request);
-    public delegate void AfterRequestEvent(IRestClient client, IRestRequest request, IRestResponse response);
+    public delegate void BeforeRequestEvent(IRequestEventData data);
+    public delegate void AfterRequestEvent(IRequestEventData data);
 }

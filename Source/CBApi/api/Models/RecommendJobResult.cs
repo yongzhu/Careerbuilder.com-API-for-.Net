@@ -1,7 +1,7 @@
-﻿namespace com.careerbuilder.api.models
-{
-    public class RecommendJobResult
-    {
+﻿using System;
+namespace com.careerbuilder.api.models {
+    [Serializable]
+    public class RecommendJobResult {
         public string JobDid { get; set; }
         public string Title { get; set; }
         public double Relevancy { get; set; }

@@ -11,29 +11,29 @@ using com.careerbuilder.api.framework.events;
 namespace CBApiCosoleApp {
     internal class Program {
 
-        private static void HandleBeforeRequest(IRestClient client, IRestRequest request){
-            Console.WriteLine("caught before request: " + client.BaseUrl);
+        private static void HandleBeforeRequest(IRequestEventData data){
+            Console.WriteLine("caught before request: " + data.BaseURL);
         }
 
-        private static void HandleAfterRequest(IRestClient client, IRestRequest request, IRestResponse response) {
-            Console.WriteLine("caught after request: " + response.Content);
+        private static void HandleAfterRequest(IRequestEventData data) {
+            Console.WriteLine("caught after request: " + data.ResponseContent);
         }
 
         private static void Main(string[] args) {
-            ICBApi svc = API.GetInstance("EnterDevKey",20000);
+            ICBApi svc = API.GetInstance("EnterDevKey", 20000);
             svc.OnBeforeRequest += new BeforeRequestEvent(HandleBeforeRequest);
             svc.OnAfterRequest += new AfterRequestEvent(HandleAfterRequest);
 
-            ////ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
+            //////ResponseJobReport jobReport = svc.JobReport("J3J67S75826K34DRBMB");
 
 
-            ////Make a call to https://api.careerbuilder.com/v2/categories
-            List<Category> codes = svc.GetCategories()
-                .WhereCountryCode(CountryCode.US)
-                .ListAll();
-            foreach (Category code in codes) {
-                Console.WriteLine(code.Code);
-            }
+            //////Make a call to https://api.careerbuilder.com/v2/categories
+            //List<Category> codes = svc.GetCategories()
+            //    .WhereCountryCode(CountryCode.US)
+            //    .ListAll();
+            //foreach (Category code in codes) {
+            //    Console.WriteLine(code.Code);
+            //}
 
             ////Make a call to https://api.careerbuilder.com/v2/employeetypes
             //List<EmployeeType> emps = svc.GetEmployeeTypes()
@@ -67,7 +67,7 @@ namespace CBApiCosoleApp {
             //Console.WriteLine(myJob.JobTitle);
 
             //Make a call to https://api.careerbuilder.com/v2/application/blank
-            BlankApplication myApp = svc.GetBlankApplication("JHP3GR6135GF0QC5Q5B");
+            BlankApplication myApp = svc.GetBlankApplication("JHQ7G55WH9YLR8T1N78");
 
             //Make a call to https://api.careerbuilder.com/v2/application/submit in test mode
             myApp.Test = true;
@@ -77,9 +77,9 @@ namespace CBApiCosoleApp {
             ResponseApplication tempResponse = svc.SubmitApplication(myApp);
             Console.WriteLine(tempResponse.ApplicationStatus);
 
-            ////Make a call to https://api.careerbuilder.com/v2/application/form
-            //string form = svc.GetApplicationForm(jobs[0].DID);
-            //Console.WriteLine(form);
+            //Make a call to https://api.careerbuilder.com/v2/application/form
+            string form = svc.GetApplicationForm("JHQ7G55WH9YLR8T1N78");
+            Console.WriteLine(form);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("CBApi")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A wrapper for the careerbuilder.com api")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jeffery Yeary")]
 [assembly: AssemblyProduct("CBApi")]
@@ -37,5 +37,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.3.0.0")]
-[assembly: AssemblyFileVersion("1.3.0.0")]
+[assembly: AssemblyVersion("1.3.3.0")]
+[assembly: AssemblyFileVersion("1.3.3.0")]

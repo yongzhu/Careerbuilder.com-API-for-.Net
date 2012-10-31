@@ -10,6 +10,11 @@ namespace Tests.com.careerbuilder.api.models.requests {
             : base(new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) }) {
         }
 
+        public GetRequestStub(APISettings settings)
+            : base(settings) {
+
+        }
+
         public override string BaseUrl {
             get { return _BaseURL; }
         }

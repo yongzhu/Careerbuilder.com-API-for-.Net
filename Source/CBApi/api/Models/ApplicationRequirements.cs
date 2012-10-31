@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace com.careerbuilder.api.models {
+    [Serializable]
     public class ApplicationRequirements {
         public string DegreeRequired { get; set; }
         public string TravelRequired { get; set; }

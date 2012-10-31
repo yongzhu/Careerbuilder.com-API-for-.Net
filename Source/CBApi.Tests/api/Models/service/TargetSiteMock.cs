@@ -9,5 +9,9 @@ namespace Tests.com.careerbuilder.api.models.service {
         public TargetSiteMock(string domain) {
             _Domain = domain;
         }
+
+        public string SetHost {
+            set { _HostOverride = value; }
+        }
     }
 }

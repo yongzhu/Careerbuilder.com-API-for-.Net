@@ -27,6 +27,11 @@ namespace com.careerbuilder.api {
             set { _Settings.SiteId = value; }
         }
 
+        public int TimeoutMS {
+            get { return _Settings.TimeoutMS; }
+            set { _Settings.TimeoutMS = value; }
+        }
+
         public event BeforeRequestEvent OnBeforeRequest {
             add { _BeforeListeners.Add(value); }
             remove { _BeforeListeners.Remove(value); }

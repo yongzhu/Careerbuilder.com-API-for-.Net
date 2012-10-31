@@ -1,7 +1,7 @@
-﻿namespace com.careerbuilder.api.models.responses
-{
-    public class Question
-    {
+﻿using System;
+namespace com.careerbuilder.api.models.responses {
+    [Serializable]
+    public class Question {
         public string QuestionID { get; set; }
         public string QuestionType { get; set; }
         public bool IsRequired { get; set; }

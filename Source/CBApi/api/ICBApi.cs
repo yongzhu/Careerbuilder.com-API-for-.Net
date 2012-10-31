@@ -13,6 +13,7 @@ namespace com.careerbuilder.api
         string CobrandCode { get; set; }
         string DevKey { get; set; }
         string SiteId { get; set; }
+        int TimeoutMS { get; set; }
         string GetApplicationForm(string jobDid);
         AccessToken GetAccessToken(string clientId, string clientSecret, string code, string redirectUri);
         Uri GetOAuthRedirectUri(string clientId, string redirectUri, string permissions);

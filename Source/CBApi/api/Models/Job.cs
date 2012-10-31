@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace com.careerbuilder.api.models
-{
-    public class Job
-    {
+namespace com.careerbuilder.api.models {
+    [Serializable]
+    public class Job {
         public string ApplyURL { get; set; }
         public bool ExternalApplication { get; set; }
         public string ApplicationSubmitServiceURL { get; set; }
