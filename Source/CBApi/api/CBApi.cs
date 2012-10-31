@@ -11,8 +11,8 @@ namespace com.careerbuilder.api {
     public class CbApi : ICBApi {
         #region attributes
         protected APISettings _Settings = new APISettings();
-        private List<BeforeRequestEvent> _BeforeListeners = new List<BeforeRequestEvent>();
-        private List<AfterRequestEvent> _AfterListeners = new List<AfterRequestEvent>();
+        protected List<BeforeRequestEvent> _BeforeListeners = new List<BeforeRequestEvent>();
+        protected List<AfterRequestEvent> _AfterListeners = new List<AfterRequestEvent>();
 
         public string DevKey { 
             get {return _Settings.DevKey;}
@@ -82,13 +82,13 @@ namespace com.careerbuilder.api {
 
         #endregion
 
-        private void WireBeforeRequestEvents(GetRequest req) {
+        protected void WireBeforeRequestEvents(GetRequest req) {
             foreach (var item in _BeforeListeners) {
                 req.OnBeforeRequest += item;
             }
         }
 
-        private void WireAfterRequestEvents(GetRequest req) {
+        protected void WireAfterRequestEvents(GetRequest req) {
             foreach (var item in _AfterListeners) {
                 req.OnAfterRequest += item;
             }
