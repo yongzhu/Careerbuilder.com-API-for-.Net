@@ -13,5 +13,9 @@ namespace Tests.com.careerbuilder.api.models.service {
         public string SetHost {
             set { _HostOverride = value; }
         }
+
+        public bool SetSecure {
+            set { _Secure = value; }
+        }
     }
 }

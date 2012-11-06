@@ -12,6 +12,24 @@ namespace Tests.com.careerbuilder.api.framework.requests {
         private bool _HasEventFired = false;
 
         [TestMethod]
+        public void BaseURL_IsNotSecure_WhenTargetSiteIsntSecure() {
+            //Setup
+            var newSite = new TargetSiteMock("127.0.0.1") { SetHost = "www.google.com", SetSecure = false };
+            var settings = new APISettings() { DevKey = "DevKey", CobrandCode = "this is a cobrand", SiteId = "this is a siteid", TimeoutMS = 12345, TargetSite = newSite };
+            var request = new PostRequestStub(settings);
+            Assert.AreEqual("http://127.0.0.1/Exammple", request.GetRequestURL);
+        }
+
+        [TestMethod]
+        public void BaseURL_IsSecure_WhenTargetSiteIsSecure() {
+            //Setup
+            var newSite = new TargetSiteMock("127.0.0.1") { SetHost = "www.google.com", SetSecure = true };
+            var settings = new APISettings() { DevKey = "DevKey", CobrandCode = "this is a cobrand", SiteId = "this is a siteid", TimeoutMS = 12345, TargetSite = newSite };
+            var request = new PostRequestStub(settings);
+            Assert.AreEqual("https://127.0.0.1/Exammple", request.GetRequestURL);
+        }
+
+        [TestMethod]
         public void BeforeRequest_SetsURL_SetsFormat_SetsTimeout() {
             //Setup
             var request = new PostRequestStub("DevKey", "api.careerbuilder.com", "this is a cobrand", "this is a siteid",12345);

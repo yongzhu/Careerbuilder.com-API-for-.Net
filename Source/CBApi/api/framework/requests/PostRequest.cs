@@ -42,7 +42,11 @@ namespace com.careerbuilder.api.framework.requests
         protected virtual string PostRequestURL()
         {
             var url = new StringBuilder(20);
-            url.Append("https://");
+            if (_Settings.TargetSite.Secure) {
+                url.Append("https://");
+            } else {
+                url.Append("http://");
+            }
             url.Append(_Settings.TargetSite.Domain);
             url.Append(BaseUrl);
             return url.ToString();

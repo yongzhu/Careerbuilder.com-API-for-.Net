@@ -4,6 +4,7 @@
     {
         protected string _Domain;
         protected string _HostOverride = null;
+        protected bool _Secure = true;
 
         public string Domain
         {
@@ -12,6 +13,10 @@
 
         public string Host {
             get { return _HostOverride; }
+        }
+
+        public bool Secure {
+            get { return _Secure; }
         }
     }
 }

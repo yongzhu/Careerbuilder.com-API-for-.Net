@@ -22,6 +22,10 @@ namespace Tests.com.careerbuilder.api.models.requests {
             set { _BaseURL = value; }
         }
 
+        public string GetRequestURL {
+            get { return PostRequestURL(); }
+        }
+
         public IRestClient Client {
             get { return _client; }
             set { _client = value; }

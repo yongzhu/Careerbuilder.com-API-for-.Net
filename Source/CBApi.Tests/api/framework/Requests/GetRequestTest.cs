@@ -77,6 +77,24 @@ namespace Tests.com.careerbuilder.api.framework.requests {
         }
 
         [TestMethod]
+        public void BaseURL_IsNotSecure_WhenTargetSiteIsntSecure() {
+            //Setup
+            var newSite = new TargetSiteMock("127.0.0.1") { SetHost = "www.google.com", SetSecure=false };
+            var settings = new APISettings() { DevKey = "DevKey", CobrandCode = "this is a cobrand", SiteId = "this is a siteid", TimeoutMS = 12345, TargetSite = newSite };
+            var request = new GetRequestStub(settings);
+            Assert.AreEqual("http://127.0.0.1/Exammple", request.GetRequestURL);
+        }
+
+        [TestMethod]
+        public void BaseURL_IsSecure_WhenTargetSiteIsSecure() {
+            //Setup
+            var newSite = new TargetSiteMock("127.0.0.1") { SetHost = "www.google.com", SetSecure = true };
+            var settings = new APISettings() { DevKey = "DevKey", CobrandCode = "this is a cobrand", SiteId = "this is a siteid", TimeoutMS = 12345, TargetSite = newSite };
+            var request = new GetRequestStub(settings);
+            Assert.AreEqual("https://127.0.0.1/Exammple", request.GetRequestURL);
+        }
+
+        [TestMethod]
         public void BeforeRequest_SetsDevKey_AndDomain_AndCobrand_AndSiteID_AndTimeout() {
             //Setup
             var request = new GetRequestStub(_Settings);

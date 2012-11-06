@@ -15,6 +15,10 @@ namespace Tests.com.careerbuilder.api.models.requests {
 
         }
 
+        public new string GetRequestURL {
+            get { return GetRequestURL(); }
+        }
+
         public override string BaseUrl {
             get { return _BaseURL; }
         }
