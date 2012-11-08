@@ -37,6 +37,7 @@ namespace com.careerbuilder.api.models
         IJobSearch SelectTop(int value);
         IJobSearch WhereKeywords(string value);
         IJobSearch WhereCategories(params Category[] codes);
+        IJobSearch WhereIndustry(params string[] industries);
         IJobSearch WhereCompanyDIDs(params string[] companies);
         IJobSearch WhereCompanyName(string value);
         IJobSearch WhereLocation(string value);

@@ -11,6 +11,7 @@ namespace com.careerbuilder.api.framework.requests
         protected bool ExcludeNationwideJobs = true;
         protected BooleanOperator _BooleanOperator = BooleanOperator.AND;
         protected List<string> _CategoryCodes = new List<string>();
+        protected List<string> _IndustryCodes = new List<string>();
         protected List<string> _CompanyDids = new List<string>();
         protected string _CompanyName = "";
         protected string _CountryCode = "US";
@@ -65,6 +66,7 @@ namespace com.careerbuilder.api.framework.requests
             AddRadiusToRequest();
             AddCountryCodeToRequest();
             AddCategoriesToRequest();
+            AddIndustriesToRequest();
             AddCompanyDIDsToRequest();
             AddSOCCodeToRequest();
             AddEducationToRequest();
@@ -112,6 +114,13 @@ namespace com.careerbuilder.api.framework.requests
             {
                 string cats = string.Join(",", _CategoryCodes);
                 _request.AddParameter("Category", cats);
+            }
+        }
+
+        private void AddIndustriesToRequest() {
+            if (_IndustryCodes.Count > 0 && _IndustryCodes.Count <= 10) {
+                string industries = string.Join(",", _IndustryCodes);
+                _request.AddParameter("IndustryCodes", industries);
             }
         }
 
@@ -171,6 +180,15 @@ namespace com.careerbuilder.api.framework.requests
         public IJobSearch WhereCountryCode(CountryCode value)
         {
             _CountryCode = value.ToString();
+            return this;
+        }
+
+        public IJobSearch WhereIndustry(params string[] industries)
+        {
+            foreach (var item in industries)
+            {
+                _IndustryCodes.Add(item);
+            }
             return this;
         }
 

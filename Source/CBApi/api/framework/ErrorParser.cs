@@ -18,12 +18,17 @@ namespace com.careerbuilder.api.framework {
             if (!string.IsNullOrEmpty(response.Content)) {
                 var errors = new List<string>();
                 var xml = new XmlDocument();
-                xml.LoadXml(response.Content);
-                foreach (XmlNode item in xml.SelectNodes("//Error")) {
-                    if (!string.IsNullOrEmpty(item.InnerText)) {
-                        errors.Add(item.InnerText);
+                try {
+                    xml.LoadXml(response.Content);
+                    foreach (XmlNode item in xml.SelectNodes("//Error")) {
+                        if (!string.IsNullOrEmpty(item.InnerText)) {
+                            errors.Add(item.InnerText);
+                        }
                     }
+                } catch (XmlException) {
+
                 }
+
                 if (errors.Count > 0) {
                     throw new APIException(errors[0], errors);
                 }
@@ -37,7 +42,7 @@ namespace com.careerbuilder.api.framework {
                 } else {
                     throw new APITimeoutException("An unknown error occured while making the API call");
                 }
-                
+
             } else if (response.ResponseStatus != ResponseStatus.Completed) {
                 if (!string.IsNullOrEmpty(response.ErrorMessage)) {
                     throw new APIException(response.ErrorMessage);
