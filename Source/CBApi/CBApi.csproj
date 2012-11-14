@@ -8,7 +8,7 @@
     <ProjectGuid>{58C4C156-4095-4F29-AF07-72722D262261}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>com.careerbuilder</RootNamespace>
+    <RootNamespace>CBApi</RootNamespace>
     <AssemblyName>CBApi</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,58 +45,58 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
-    <Compile Include="api\APIException.cs" />
-    <Compile Include="api\APISettings.cs" />
-    <Compile Include="api\CBApi.cs" />
-    <Compile Include="api\APITimeoutException.cs" />
-    <Compile Include="api\ErrorResponse.cs" />
-    <Compile Include="api\framework\ErrorParser.cs" />
-    <Compile Include="api\framework\events\Events.cs" />
-    <Compile Include="api\framework\RequestEventData.cs" />
-    <Compile Include="api\framework\requests\ApplicationFormRequest.cs" />
-    <Compile Include="api\framework\requests\AuthTokenRequest.cs" />
-    <Compile Include="api\framework\requests\OAuthRedirectBuilder.cs" />
-    <Compile Include="api\framework\requests\JobReportRequest.cs" />
-    <Compile Include="api\framework\requests\PostRequest.cs" />
-    <Compile Include="api\framework\requests\SubmitApplicationRequest.cs" />
-    <Compile Include="api\ICBApi.cs" />
-    <Compile Include="api\IRequestEventData.cs" />
-    <Compile Include="api\models\Application.cs" />
-    <Compile Include="api\models\ApplicationRequirements.cs" />
-    <Compile Include="api\models\Bucket.cs" />
-    <Compile Include="api\models\AccessToken.cs" />
-    <Compile Include="api\models\Item.cs" />
-    <Compile Include="api\models\RequestApplication.cs" />
-    <Compile Include="api\models\Response.cs" />
-    <Compile Include="api\models\ResponseJobReport.cs" />
-    <Compile Include="api\models\Resume.cs" />
-    <Compile Include="api\models\queryInterfaces\IJobSearch.cs" />
-    <Compile Include="api\framework\requests\CategoriesRequest.cs" />
-    <Compile Include="api\framework\requests\BlankApplicationRequest.cs" />
-    <Compile Include="api\framework\requests\UserRecommendationsRequest.cs" />
-    <Compile Include="api\framework\requests\JobRecommendationsRequest.cs" />
-    <Compile Include="api\framework\requests\JobSearchRequest.cs" />
-    <Compile Include="api\framework\requests\JobRequest.cs" />
-    <Compile Include="api\framework\requests\GetRequest.cs" />
-    <Compile Include="api\framework\requests\EmployeeTypesRequest.cs" />
-    <Compile Include="api\models\queryInterfaces\IEmployeeTypesRequest.cs" />
-    <Compile Include="api\models\queryInterfaces\ICategoryRequest.cs" />
-    <Compile Include="api\models\Category.cs" />
-    <Compile Include="api\models\BlankApplication.cs" />
-    <Compile Include="api\models\Company.cs" />
-    <Compile Include="api\models\Location.cs" />
-    <Compile Include="api\models\RecommendJobResult.cs" />
-    <Compile Include="api\models\Education.cs" />
-    <Compile Include="api\models\JobSearchResult.cs" />
-    <Compile Include="api\models\ResponseApplication.cs" />
-    <Compile Include="api\models\EmployeeType.cs" />
-    <Compile Include="api\models\Job.cs" />
-    <Compile Include="api\models\Money.cs" />
-    <Compile Include="api\models\Question.cs" />
-    <Compile Include="api\models\ResponseJobSearch.cs" />
-    <Compile Include="api\models\service\CareerBuilder.Com.cs" />
-    <Compile Include="api\models\service\CountryCodes.cs" />
-    <Compile Include="api\models\service\TargetSite.cs" />
+    <Compile Include="APIException.cs" />
+    <Compile Include="APISettings.cs" />
+    <Compile Include="CBApi.cs" />
+    <Compile Include="APITimeoutException.cs" />
+    <Compile Include="ErrorResponse.cs" />
+    <Compile Include="Framework\ErrorParser.cs" />
+    <Compile Include="Framework\events\Events.cs" />
+    <Compile Include="Framework\RequestEventData.cs" />
+    <Compile Include="Framework\requests\ApplicationFormRequest.cs" />
+    <Compile Include="Framework\requests\AuthTokenRequest.cs" />
+    <Compile Include="Framework\requests\OAuthRedirectBuilder.cs" />
+    <Compile Include="Framework\requests\JobReportRequest.cs" />
+    <Compile Include="Framework\requests\PostRequest.cs" />
+    <Compile Include="Framework\requests\SubmitApplicationRequest.cs" />
+    <Compile Include="ICBApi.cs" />
+    <Compile Include="IRequestEventData.cs" />
+    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\ApplicationRequirements.cs" />
+    <Compile Include="Models\Bucket.cs" />
+    <Compile Include="Models\AccessToken.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\RequestApplication.cs" />
+    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\ResponseJobReport.cs" />
+    <Compile Include="Models\Resume.cs" />
+    <Compile Include="Models\QueryInterfaces\IJobSearch.cs" />
+    <Compile Include="Framework\requests\CategoriesRequest.cs" />
+    <Compile Include="Framework\requests\BlankApplicationRequest.cs" />
+    <Compile Include="Framework\requests\UserRecommendationsRequest.cs" />
+    <Compile Include="Framework\requests\JobRecommendationsRequest.cs" />
+    <Compile Include="Framework\requests\JobSearchRequest.cs" />
+    <Compile Include="Framework\requests\JobRequest.cs" />
+    <Compile Include="Framework\requests\GetRequest.cs" />
+    <Compile Include="Framework\requests\EmployeeTypesRequest.cs" />
+    <Compile Include="Models\QueryInterfaces\IEmployeeTypesRequest.cs" />
+    <Compile Include="Models\QueryInterfaces\ICategoryRequest.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\BlankApplication.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\RecommendJobResult.cs" />
+    <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\JobSearchResult.cs" />
+    <Compile Include="Models\ResponseApplication.cs" />
+    <Compile Include="Models\EmployeeType.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Money.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\ResponseJobSearch.cs" />
+    <Compile Include="Models\Service\CareerBuilder.Com.cs" />
+    <Compile Include="Models\Service\CountryCodes.cs" />
+    <Compile Include="Models\Service\TargetSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

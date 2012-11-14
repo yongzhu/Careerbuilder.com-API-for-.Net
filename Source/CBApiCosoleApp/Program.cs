@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using com.careerbuilder;
-using com.careerbuilder.api;
-using com.careerbuilder.api.models;
-using com.careerbuilder.api.models.responses;
-using com.careerbuilder.api.models.service;
+using CBApi;
+using CBApi;
+using CBApi.Models;
+using CBApi.Models.Responses;
+using CBApi.Models.Service;
 using RestSharp;
-using com.careerbuilder.api.framework.events;
+using CBApi.Framework.Events;
 
 namespace CBApiCosoleApp {
     internal class Program {

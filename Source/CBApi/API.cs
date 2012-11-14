@@ -1,7 +1,7 @@
-﻿using com.careerbuilder.api;
-using com.careerbuilder.api.models.service;
+﻿using CBApi;
+using CBApi.Models.Service;
 
-namespace com.careerbuilder
+namespace CBApi
 {
     public class API
     {
