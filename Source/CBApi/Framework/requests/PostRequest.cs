@@ -5,42 +5,25 @@ using System.Xml;
 using RestSharp;
 using CBApi.Framework.Events;
 
-namespace CBApi.Framework.Requests
-{
-    public abstract class PostRequest
-    {
+namespace CBApi.Framework.Requests {
+    public abstract class PostRequest : BaseRequest {
         private APISettings _Settings = null;
         protected IRestClient _client = new RestClient();
         protected IRestRequest _request = new RestRequest(Method.POST);
-        protected BeforeRequestEvent _BeforeRequestEvent = delegate { };
-        protected AfterRequestEvent _AfterRequestEvent = delegate { };
 
-        protected PostRequest(APISettings settings)
-        {
+        protected PostRequest(APISettings settings) {
             if (settings == null) {
                 throw new ArgumentNullException("settings", "You must provide valid API settings");
             }
             _Settings = settings;
-            if (_Settings.TargetSite == null)
-            {
+            if (_Settings.TargetSite == null) {
                 throw new ArgumentNullException("domain", "Please provide a valid domain name");
             }
         }
 
-        public abstract string BaseUrl { get;}
+        public abstract string BaseUrl { get; }
 
-        internal event BeforeRequestEvent OnBeforeRequest {
-            add { _BeforeRequestEvent += value; }
-            remove { _BeforeRequestEvent += value; }
-        }
-
-        internal event AfterRequestEvent OnAfterRequest {
-            add { _AfterRequestEvent += value; }
-            remove { _AfterRequestEvent += value; }
-        }
-
-        protected virtual string PostRequestURL()
-        {
+        protected virtual string PostRequestURL() {
             var url = new StringBuilder(20);
             if (_Settings.TargetSite.Secure) {
                 url.Append("https://");
@@ -52,8 +35,7 @@ namespace CBApi.Framework.Requests
             return url.ToString();
         }
 
-        protected virtual void BeforeRequest()
-        {
+        protected virtual void BeforeRequest() {
             _client.BaseUrl = PostRequestURL();
             _request.RequestFormat = DataFormat.Xml;
             _request.Timeout = _Settings.TimeoutMS;

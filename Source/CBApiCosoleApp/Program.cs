@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CBApi;
-using CBApi;
 using CBApi.Models;
 using CBApi.Models.Responses;
 using CBApi.Models.Service;

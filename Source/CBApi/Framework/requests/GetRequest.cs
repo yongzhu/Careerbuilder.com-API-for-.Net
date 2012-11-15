@@ -7,13 +7,11 @@ using System.Collections.Generic;
 using CBApi.Framework.Events;
 
 namespace CBApi.Framework.Requests {
-    public abstract class GetRequest {
+    public abstract class GetRequest : BaseRequest {
         protected APISettings _Settings = null;
 
         protected IRestClient _client = new RestClient();
         protected IRestRequest _request = new RestRequest();
-        protected BeforeRequestEvent _BeforeRequestEvent = delegate { };
-        protected AfterRequestEvent _AfterRequestEvent = delegate { };
 
         protected GetRequest(APISettings settings) {
             if (settings == null) {
@@ -32,16 +30,6 @@ namespace CBApi.Framework.Requests {
             if (settings.TargetSite != null && string.IsNullOrEmpty(settings.TargetSite.Domain)) {
                 throw new ArgumentNullException("TargetSite", "Please provide a valid domain name");
             }
-        }
-
-        internal event BeforeRequestEvent OnBeforeRequest {
-            add { _BeforeRequestEvent += value; }
-            remove { _BeforeRequestEvent += value; }
-        }
-
-        internal event AfterRequestEvent OnAfterRequest {
-            add { _AfterRequestEvent += value; }
-            remove { _AfterRequestEvent += value; }
         }
 
         public abstract string BaseUrl { get; }

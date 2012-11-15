@@ -82,13 +82,13 @@ namespace CBApi {
 
         #endregion
 
-        protected void WireBeforeRequestEvents(GetRequest req) {
+        protected void WireBeforeRequestEvents(BaseRequest req) {
             foreach (var item in _BeforeListeners) {
                 req.OnBeforeRequest += item;
             }
         }
 
-        protected void WireAfterRequestEvents(GetRequest req) {
+        protected void WireAfterRequestEvents(BaseRequest req) {
             foreach (var item in _AfterListeners) {
                 req.OnAfterRequest += item;
             }
@@ -141,6 +141,8 @@ namespace CBApi {
         /// <returns>The job</returns>
         public string GetApplicationForm(string jobDid) {
             var req = new ApplicationFormRequest(jobDid, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.Retrieve();
         }
 
@@ -172,6 +174,8 @@ namespace CBApi {
         /// <returns></returns>
         public ResponseApplication SubmitApplication(RequestApplication app) {
             var req = new SubmitApplicationRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.Submit(app);
         }
 
@@ -246,6 +250,8 @@ namespace CBApi {
 
         public ResponseJobReport JobReport(string jobDid) {
             var req = new JobReportRequest(jobDid, _Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
             return req.GetReport();
         }
 
