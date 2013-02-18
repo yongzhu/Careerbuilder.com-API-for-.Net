@@ -61,6 +61,9 @@ namespace CBApi.Framework.Requests {
             if (!string.IsNullOrEmpty(_Settings.TargetSite.Host)) {
                 _request.AddHeader("Host", _Settings.TargetSite.Host);
             }
+            foreach (var item in _Settings.TargetSite.Headers) {
+                _request.AddHeader(item.Key,item.Value);
+            }
             _BeforeRequestEvent(new RequestEventData(_client, _request, null));
         }
 

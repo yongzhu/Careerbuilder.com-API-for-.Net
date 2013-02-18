@@ -9,6 +9,12 @@ namespace Tests.CBApi.framework.requests {
             : base(jobDID, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain) }) {
         }
 
+        public BlankAppStub(string jobDID, string key, string cobrand, string siteid, TargetSiteMock site)
+            : base(jobDID, new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = site }) {
+        }
+
+
+
         public string JobDID {
             get { return JobDid; }
         }

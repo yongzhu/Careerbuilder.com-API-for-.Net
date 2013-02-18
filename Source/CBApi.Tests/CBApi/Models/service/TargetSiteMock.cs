@@ -17,5 +17,10 @@ namespace Tests.CBApi.models.service {
         public bool SetSecure {
             set { _Secure = value; }
         }
+
+        public Dictionary<string, string> SetHeaders {
+            set { _AdditionalHeaders = value; }
+            get {return _AdditionalHeaders; }
+        }
     }
 }

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="CBApi\framework\ErrorParserTests.cs" />
     <Compile Include="CBApi\framework\requests\BlankAppStub.cs" />
+    <Compile Include="CBApi\framework\requests\TargetSiteTest.cs" />
     <Compile Include="CBApi\framework\requests\JobRecommendationsRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\JobRecommendationsWithUserPreferencesRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\SubmitApplicationRequestTest.cs" />
