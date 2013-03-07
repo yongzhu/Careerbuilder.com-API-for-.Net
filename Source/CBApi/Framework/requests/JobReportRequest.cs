@@ -19,8 +19,8 @@ namespace CBApi.Framework.Requests
 
         public ResponseJobReport GetReport()
         {
-            base.BeforeRequest();
             _request.AddParameter("JobDID", _jobDid);
+            base.BeforeRequest();
             IRestResponse<ResponseJobReport> response = _client.Execute<ResponseJobReport>(_request);
             CheckForErrors(response);
             return response.Data;

@@ -24,9 +24,9 @@ namespace CBApi.Framework.Requests {
         }
 
         public Job Retrieve() {
-            base.BeforeRequest();
             AddParametersToRequest();
             _request.RootElement = "Job";
+            base.BeforeRequest();
             IRestResponse<Job> response = _client.Execute<Job>(_request);
             CheckForErrors(response);
             return response.Data;

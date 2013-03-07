@@ -34,9 +34,9 @@ namespace CBApi.Framework.Requests
 
         public BlankApplication Retrieve()
         {
-            base.BeforeRequest();
             _request.AddParameter("JobDID", JobDid);
             _request.RootElement = "BlankApplication";
+            base.BeforeRequest();
             IRestResponse<BlankApplication> response = _client.Execute<BlankApplication>(_request);
             _AfterRequestEvent(new RequestEventData(_client, _request, response));
             CheckForErrors(response);

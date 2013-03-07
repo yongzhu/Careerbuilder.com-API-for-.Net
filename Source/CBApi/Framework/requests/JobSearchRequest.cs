@@ -40,8 +40,8 @@ namespace CBApi.Framework.Requests {
         #region IJobSearch Members
 
         public ResponseJobSearch Search() {
-            base.BeforeRequest();
             AddParametersToRequest();
+            base.BeforeRequest();
             IRestResponse<ResponseJobSearch> response = _client.Execute<ResponseJobSearch>(_request);
             _AfterRequestEvent(new RequestEventData(_client, _request, response));
             CheckForErrors(response);

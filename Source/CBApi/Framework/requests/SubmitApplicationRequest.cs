@@ -16,8 +16,8 @@ namespace CBApi.Framework.Requests
 
         public ResponseApplication Submit(RequestApplication app)
         {
-            base.BeforeRequest();
             _request.AddBody(app);
+            base.BeforeRequest();
             IRestResponse<ResponseApplication> response = _client.Execute<ResponseApplication>(_request);
             CheckForErrors(response);
             return response.Data;

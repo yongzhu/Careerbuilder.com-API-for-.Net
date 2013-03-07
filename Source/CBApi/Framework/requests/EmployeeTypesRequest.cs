@@ -35,9 +35,9 @@ namespace CBApi.Framework.Requests
 
         public List<EmployeeType> ListAll()
         {
-            base.BeforeRequest();
             _request.AddParameter("CountryCode", _countryCode);
             _request.RootElement = "EmployeeTypes";
+            base.BeforeRequest();
             IRestResponse<List<EmployeeType>> response = _client.Execute<List<EmployeeType>>(_request);
             CheckForErrors(response);
             return response.Data;

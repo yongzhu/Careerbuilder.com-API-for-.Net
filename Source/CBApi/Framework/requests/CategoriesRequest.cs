@@ -35,9 +35,9 @@ namespace CBApi.Framework.Requests
 
         public List<Category> ListAll()
         {
-            base.BeforeRequest();
             _request.AddParameter("CountryCode", _countryCode);
             _request.RootElement = "Categories";
+            base.BeforeRequest();
             IRestResponse<List<Category>> response = _client.Execute<List<Category>>(_request);
             _AfterRequestEvent(new RequestEventData(_client, _request, response));
             CheckForErrors(response);

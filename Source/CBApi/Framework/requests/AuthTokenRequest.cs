@@ -40,11 +40,11 @@ namespace CBApi.Framework.Requests {
         }
 
         public AccessToken GetAccessToken() {
-            base.BeforeRequest();
             _request.AddParameter("client_id", _ClientId);
             _request.AddParameter("client_secret", _ClientSecret);
             _request.AddParameter("redirect_uri", _RedirectUri);
             _request.AddParameter("code", _Code);
+            base.BeforeRequest();
             IRestResponse<AccessToken> response = _client.Execute<AccessToken>(_request);
             _AfterRequestEvent(new RequestEventData(_client, _request, response));
             CheckForErrors(response);

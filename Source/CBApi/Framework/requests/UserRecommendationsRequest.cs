@@ -29,9 +29,9 @@ namespace CBApi.Framework.Requests
 
         public List<RecommendJobResult> GetRecommendations()
         {
-            base.BeforeRequest();
             _request.AddParameter("ExternalID", _ExternalID);
             _request.RootElement = "RecommendJobResults";
+            base.BeforeRequest();
             IRestResponse<List<RecommendJobResult>> response = _client.Execute<List<RecommendJobResult>>(_request);
             CheckForErrors(response);
             return response.Data;

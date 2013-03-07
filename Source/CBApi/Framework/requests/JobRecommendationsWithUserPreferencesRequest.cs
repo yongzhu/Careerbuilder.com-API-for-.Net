@@ -21,8 +21,8 @@ namespace CBApi.Framework.Requests {
         }
 
         protected override void BeforeRequest() {
-            base.BeforeRequest();
             _request.AddParameter("UserDID", _userDid);
+            base.BeforeRequest();
         }
     }
 }

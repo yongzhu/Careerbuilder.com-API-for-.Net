@@ -33,8 +33,8 @@ namespace CBApi.Framework.Requests
 
         public string Retrieve()
         {
-            base.BeforeRequest();
             _request.AddParameter("JobDID", JobDid);
+            base.BeforeRequest();
             IRestResponse response = _client.Execute(_request);
             _AfterRequestEvent(new RequestEventData(_client, _request, response));
             CheckForErrors(response);
