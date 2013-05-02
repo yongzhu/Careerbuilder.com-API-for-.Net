@@ -90,9 +90,9 @@ namespace CBApi.Models {
 
         IJobSearch WhereLocation(float latitude, float longitude);
 
-        IJobSearch WherePayGreaterThan(int value);
+        IJobSearch WherePayGreaterThan(int minimumPay);
 
-        IJobSearch WherePayLessThan(int value);
+        IJobSearch WherePayLessThan(int maximumPay);
 
         IJobSearch WherePerPage(int value);
 

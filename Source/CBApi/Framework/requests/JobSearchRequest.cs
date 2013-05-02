@@ -13,9 +13,9 @@ namespace CBApi.Framework.Requests {
         protected string _CompanyName = "";
         protected string _CountryCode = "US";
         protected string _EducationCode = "";
-        protected List<string> _EmployeeTypes = new List<string>();
         protected Dictionary<FacetField, string> _Facets = new Dictionary<FacetField, string>();
         protected List<string> _IndustryCodes = new List<string>();
+        protected List<string> _EmployeeTypes = new List<string>();
         protected string _Keywords = "";
         protected string _Location = "";
         protected int _MaxPay = -1;
@@ -31,6 +31,7 @@ namespace CBApi.Framework.Requests {
         protected string _SiteEntity = "";
         protected string _Soccode = "";
         protected bool _SpecificEducation = false;
+        protected bool _ExcludeJobsWithoutSalary, _ExcludeNationwide, _ExcludeNontraditional;
 
         public override string BaseUrl {
             get { return "/v1/jobsearch"; }
@@ -51,14 +52,17 @@ namespace CBApi.Framework.Requests {
         }
 
         public IJobSearch ExcludeJobsWithoutSalary() {
+            _ExcludeJobsWithoutSalary = true;
             return this;
         }
 
         public IJobSearch ExcludeNationwideJobs() {
+            _ExcludeNationwide = true;
             return this;
         }
 
         public IJobSearch ExcludeNontraditionalJobs() {
+            _ExcludeNontraditional = true;
             return this;
         }
 
@@ -136,16 +140,26 @@ namespace CBApi.Framework.Requests {
         }
 
         public IJobSearch WhereEducationCodeEquals(string educationCode) {
+            if (!string.IsNullOrWhiteSpace(educationCode)) {
+                _EducationCode = educationCode.ToUpper();
+                _SpecificEducation = true;
+            }
             return this;
         }
 
         public IJobSearch WhereEducationCodeMaximum(string educationCode) {
+            if (!string.IsNullOrWhiteSpace(educationCode)) {
+                _EducationCode = educationCode.ToUpper();
+                _SpecificEducation = false;
+            }
             return this;
         }
 
         public IJobSearch WhereEmployeeTypes(params string[] employmentTypes) {
-            foreach (var item in employmentTypes) {
-                _EmployeeTypes.Add(item);
+            foreach (var employmentType in employmentTypes) {
+                if (!string.IsNullOrWhiteSpace(employmentType) && employmentType.ToUpper() != "ALL") {
+                    _EmployeeTypes.Add(employmentType.ToUpper());
+                }
             }
             return this;
         }
@@ -197,13 +211,17 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
-        public IJobSearch WherePayGreaterThan(int value) {
-            _MinPay = value;
+        public IJobSearch WherePayGreaterThan(int minimumPay) {
+            if (minimumPay > 0) {
+                _MinPay = minimumPay;
+            }
             return this;
         }
 
-        public IJobSearch WherePayLessThan(int value) {
-            _MaxPay = value;
+        public IJobSearch WherePayLessThan(int maximumPay) {
+            if (maximumPay > 0) {
+                _MaxPay = maximumPay;
+            }
             return this;
         }
 
@@ -242,6 +260,7 @@ namespace CBApi.Framework.Requests {
             AddEducationToRequest();
             AddPostedWithinToRequest();
             AddEmployeeTypesToRequest();
+            AddSimpleExclusionsToRequest();
 
             AddPerPageToRequest();
             AddPageNumberToRequest();
@@ -277,16 +296,30 @@ namespace CBApi.Framework.Requests {
         }
 
         private void AddEducationToRequest() {
-            if (!string.IsNullOrEmpty(_EducationCode)) {
+            if (!string.IsNullOrWhiteSpace(_EducationCode) && _EducationCode != "DRNS") {
                 _request.AddParameter("EducationCode", _EducationCode);
-                _request.AddParameter("SpecificEducation", _SpecificEducation.ToString());
+                if (_SpecificEducation) {
+                    _request.AddParameter("SpecificEducation", _SpecificEducation.ToString());
+                }
             }
         }
 
         private void AddEmployeeTypesToRequest() {
             if (_EmployeeTypes.Count > 0) {
-                string emps = string.Join(",", _EmployeeTypes);
-                _request.AddParameter("EmpType", emps);
+                string industries = string.Join(",", _EmployeeTypes);
+                _request.AddParameter("EmpType", industries);
+            }
+        }
+
+        private void AddSimpleExclusionsToRequest() {
+            if (_ExcludeJobsWithoutSalary) {
+                _request.AddParameter("PayInfoOnly", "true");
+            }
+            if (_ExcludeNationwide) {
+                _request.AddParameter("ExcludeNational", "true");
+            }
+            if (_ExcludeNontraditional) {
+                _request.AddParameter("ExcludeNonTraditionalJobs", "true");
             }
         }
 
