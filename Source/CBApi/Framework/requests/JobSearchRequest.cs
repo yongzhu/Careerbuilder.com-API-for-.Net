@@ -14,8 +14,6 @@ namespace CBApi.Framework.Requests {
         protected string _CountryCode = "US";
         protected string _EducationCode = "";
         protected List<string> _EmployeeTypes = new List<string>();
-        protected bool _ExcludeNationWideJobs = true;
-        protected bool _ExcludeNonTraditionalJobs = true;
         protected Dictionary<FacetField, string> _Facets = new Dictionary<FacetField, string>();
         protected List<string> _IndustryCodes = new List<string>();
         protected string _Keywords = "";
@@ -33,7 +31,6 @@ namespace CBApi.Framework.Requests {
         protected string _SiteEntity = "";
         protected string _Soccode = "";
         protected bool _SpecificEducation = false;
-        protected bool ExcludeNationwideJobs = true;
 
         public override string BaseUrl {
             get { return "/v1/jobsearch"; }
@@ -50,6 +47,18 @@ namespace CBApi.Framework.Requests {
 
         public IJobSearch Descending() {
             _OrderDirection = OrderDirection.Descending;
+            return this;
+        }
+
+        public IJobSearch ExcludeJobsWithoutSalary() {
+            return this;
+        }
+
+        public IJobSearch ExcludeNationwideJobs() {
+            return this;
+        }
+
+        public IJobSearch ExcludeNontraditionalJobs() {
             return this;
         }
 
@@ -126,6 +135,14 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        public IJobSearch WhereEducationCodeEquals(string educationCode) {
+            return this;
+        }
+
+        public IJobSearch WhereEducationCodeMaximum(string educationCode) {
+            return this;
+        }
+
         public IJobSearch WhereEmployeeTypes(params string[] employmentTypes) {
             foreach (var item in employmentTypes) {
                 _EmployeeTypes.Add(item);
@@ -157,8 +174,10 @@ namespace CBApi.Framework.Requests {
         }
 
         public IJobSearch WhereIndustry(params string[] industries) {
-            foreach (var item in industries) {
-                _IndustryCodes.Add(item);
+            foreach (var industryCode in industries) {
+                if (!string.IsNullOrWhiteSpace(industryCode) && industryCode.ToUpper() != "ALL") {
+                    _IndustryCodes.Add(industryCode.ToUpper());
+                }
             }
             return this;
         }
@@ -282,7 +301,10 @@ namespace CBApi.Framework.Requests {
         }
 
         private void AddIndustriesToRequest() {
-            if (_IndustryCodes.Count > 0 && _IndustryCodes.Count <= 10) {
+            if (_IndustryCodes.Count > 0) {
+                if (_IndustryCodes.Count > 10) {
+                    _IndustryCodes.RemoveRange(10, _IndustryCodes.Count - 10);
+                }
                 string industries = string.Join(",", _IndustryCodes);
                 _request.AddParameter("IndustryCodes", industries);
             }

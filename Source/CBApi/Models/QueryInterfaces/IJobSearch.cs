@@ -40,6 +40,12 @@ namespace CBApi.Models {
 
         IJobSearch Descending();
 
+        IJobSearch ExcludeJobsWithoutSalary();
+
+        IJobSearch ExcludeNationwideJobs();
+
+        IJobSearch ExcludeNontraditionalJobs();
+
         IJobSearch Limit(int value);
 
         IJobSearch Offset(int value);
@@ -65,6 +71,12 @@ namespace CBApi.Models {
         IJobSearch WhereCompanyName(string value);
 
         IJobSearch WhereCountryCode(CountryCode value);
+
+        IJobSearch WhereEducationCodeEquals(string educationCode);
+
+        IJobSearch WhereEducationCodeMaximum(string educationCode);
+
+        IJobSearch WhereEmployeeTypes(params string[] employmentTypes);
 
         IJobSearch WhereFacets(params KeyValuePair<FacetField, string>[] facets);
 
