@@ -90,6 +90,12 @@ namespace CBApi.Models {
 
         IJobSearch WhereLocation(float latitude, float longitude);
 
+        IJobSearch WhereNotCompanyName(params string[] companyNames);
+
+        IJobSearch WhereNotJobTitle(params string[] jobTitles);
+
+        IJobSearch WhereNotKeywords(params string[] keywords);
+
         IJobSearch WherePayGreaterThan(int minimumPay);
 
         IJobSearch WherePayLessThan(int maximumPay);

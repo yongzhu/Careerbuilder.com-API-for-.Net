@@ -16,6 +16,9 @@ namespace CBApi.Framework.Requests {
         protected Dictionary<FacetField, string> _Facets = new Dictionary<FacetField, string>();
         protected List<string> _IndustryCodes = new List<string>();
         protected List<string> _EmployeeTypes = new List<string>();
+        protected List<string> _ExcludedCompanies = new List<string>();
+        protected List<string> _ExcludedJobTitles = new List<string>();
+        protected List<string> _ExcludedKeywords = new List<string>();
         protected string _Keywords = "";
         protected string _Location = "";
         protected int _MaxPay = -1;
@@ -211,6 +214,33 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        public IJobSearch WhereNotCompanyName(params string[] companyNames) {
+            foreach (var companyName in companyNames) {
+                if (!string.IsNullOrWhiteSpace(companyName) && !_ExcludedCompanies.Contains(companyName)) {
+                    _ExcludedCompanies.Add(companyName);
+                }
+            }
+            return this;
+        }
+
+        public IJobSearch WhereNotJobTitle(params string[] jobTitles) {
+            foreach (var title in jobTitles) {
+                if (!string.IsNullOrWhiteSpace(title) && !_ExcludedJobTitles.Contains(title)) {
+                    _ExcludedJobTitles.Add(title);
+                }
+            }
+            return this;
+        }
+
+        public IJobSearch WhereNotKeywords(params string[] keywords) {
+            foreach (var keyword in keywords) {
+                if (!string.IsNullOrWhiteSpace(keyword) && !_ExcludedKeywords.Contains(keyword)) {
+                    _ExcludedKeywords.Add(keyword);
+                }
+            }
+            return this;
+        }
+
         public IJobSearch WherePayGreaterThan(int minimumPay) {
             if (minimumPay > 0) {
                 _MinPay = minimumPay;
@@ -260,6 +290,9 @@ namespace CBApi.Framework.Requests {
             AddEducationToRequest();
             AddPostedWithinToRequest();
             AddEmployeeTypesToRequest();
+            AddExcludedCompaniesToRequest();
+            AddExcludedJobTitlesToRequest();
+            AddExcludedKeywordsToRequest();
             AddSimpleExclusionsToRequest();
 
             AddPerPageToRequest();
@@ -308,6 +341,27 @@ namespace CBApi.Framework.Requests {
             if (_EmployeeTypes.Count > 0) {
                 string industries = string.Join(",", _EmployeeTypes);
                 _request.AddParameter("EmpType", industries);
+            }
+        }
+
+        private void AddExcludedCompaniesToRequest() {
+            if (_ExcludedCompanies.Count > 0) {
+                string companies = string.Join(",", _ExcludedCompanies);
+                _request.AddParameter("ExcludeCompanyNames", companies);
+            }
+        }
+
+        private void AddExcludedJobTitlesToRequest() {
+            if (_ExcludedJobTitles.Count > 0) {
+                string titles = string.Join(",", _ExcludedJobTitles);
+                _request.AddParameter("ExcludeJobTitles", titles);
+            }
+        }
+
+        private void AddExcludedKeywordsToRequest() {
+            if (_ExcludedKeywords.Count > 0) {
+                string keywords = string.Join(",", _ExcludedKeywords);
+                _request.AddParameter("ExcludeKeywords", keywords);
             }
         }
 
