@@ -7,6 +7,7 @@ namespace CBApi.Models.Facets {
         public string JobSearchRequestValue { get; set; }
         public string DisplayValue { get; set; }
         public int Count { get; set; }
+        public bool Selected { get; set; }
 
     }
 }
