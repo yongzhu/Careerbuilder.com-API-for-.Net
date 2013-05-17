@@ -11,7 +11,7 @@ namespace CBApi.Framework.Requests {
         protected List<string> _CategoryCodes = new List<string>();
         protected List<string> _CompanyDids = new List<string>();
         protected string _CompanyName = "";
-        protected string _CountryCode = "US";
+        protected string _CountryCode = "";
         protected string _EducationCode = "";
         protected Dictionary<FacetField, string> _Facets = new Dictionary<FacetField, string>();
         protected List<string> _IndustryCodes = new List<string>();

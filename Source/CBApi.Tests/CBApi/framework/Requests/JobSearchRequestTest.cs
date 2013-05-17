@@ -11,9 +11,9 @@ namespace Tests.CBApi.framework.requests {
     public class JobSearchRequestTest {
 
         [TestMethod]
-        public void Constructor_DefaultsToUSCountryCode() {
+        public void Constructor_DoesNotDefaultUSCountryCode() {
             var request = new JobSearchStub("DevKey", "api.careerbuilder.com", "", "");
-            Assert.AreEqual("US", request.CountryCode);
+            Assert.AreEqual("", request.CountryCode);
         }
 
         [TestMethod]
