@@ -8,33 +8,32 @@ namespace CBApi.Framework.Requests {
     internal class JobSearchRequest : GetRequest, IJobSearch {
 
         protected BooleanOperator _BooleanOperator = BooleanOperator.AND;
-        protected List<string> _CategoryCodes = new List<string>();
-        protected List<string> _CompanyDids = new List<string>();
+        protected OrderByType _OrderBy = OrderByType.Relevance;
+        protected OrderDirection _OrderDirection = OrderDirection.Descending;
+        protected bool _ExcludeJobsWithoutSalary, _ExcludeNationwide, _ExcludeNontraditional, _SpecificEducation, _ShowFacets;
         protected string _CompanyName = "";
         protected string _CountryCode = "";
         protected string _EducationCode = "";
+        protected string _Keywords = "";
+        protected string _Location = "";
+        protected string _SearchView = "";
+        protected string _SiteEntity = "";
+        protected string _Soccode = "";
+        protected int _MaxPay = -1;
+        protected int _MinPay = -1;
+        protected int _OffSet = 1;
+        protected int _PageNumber = 1;
+        protected int _PerPage = 25;
+        protected int _PostedWithin = 30;
+        protected int _Radius = 0;
         protected Dictionary<FacetField, string> _Facets = new Dictionary<FacetField, string>();
+        protected List<string> _CategoryCodes = new List<string>();
+        protected List<string> _CompanyDids = new List<string>();
         protected List<string> _IndustryCodes = new List<string>();
         protected List<string> _EmployeeTypes = new List<string>();
         protected List<string> _ExcludedCompanies = new List<string>();
         protected List<string> _ExcludedJobTitles = new List<string>();
         protected List<string> _ExcludedKeywords = new List<string>();
-        protected string _Keywords = "";
-        protected string _Location = "";
-        protected int _MaxPay = -1;
-        protected int _MinPay = -1;
-        protected int _OffSet = 1;
-        protected OrderByType _OrderBy = OrderByType.Relevance;
-        protected OrderDirection _OrderDirection = OrderDirection.Descending;
-        protected int _PageNumber = 1;
-        protected int _PerPage = 25;
-        protected int _PostedWithin = 30;
-        protected int _Radius = 0;
-        protected bool _ShowFacets;
-        protected string _SiteEntity = "";
-        protected string _Soccode = "";
-        protected bool _SpecificEducation = false;
-        protected bool _ExcludeJobsWithoutSalary, _ExcludeNationwide, _ExcludeNontraditional;
 
         public override string BaseUrl {
             get { return "/v1/jobsearch"; }
@@ -267,6 +266,11 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        public IJobSearch WhereSearchView(string searchView) {
+            _SearchView = searchView ?? "";
+            return this;
+        }
+
         public IJobSearch WhereSiteEntity(string value) {
             _SiteEntity = value;
             return this;
@@ -278,6 +282,8 @@ namespace CBApi.Framework.Requests {
         }
 
         protected void AddParametersToRequest() {
+            _request.AddParameter("SearchView", "jobresults");
+
             AddKeywordsToRequest();
             AddCompanyNameToRequest();
             AddLocationToRequest();
@@ -298,6 +304,7 @@ namespace CBApi.Framework.Requests {
             AddPerPageToRequest();
             AddPageNumberToRequest();
             AddSiteEntityToRequest();
+            AddSearchViewToRequest();
 
             AddFacets();
         }
@@ -426,6 +433,12 @@ namespace CBApi.Framework.Requests {
         private void AddRadiusToRequest() {
             if (_Radius >= 5 && _Radius <= 150) {
                 _request.AddParameter("Radius", _Radius.ToString());
+            }
+        }
+
+        private void AddSearchViewToRequest() {
+            if (!string.IsNullOrWhiteSpace(_SearchView)) {
+                _request.AddParameter("SearchView", _SearchView);
             }
         }
 

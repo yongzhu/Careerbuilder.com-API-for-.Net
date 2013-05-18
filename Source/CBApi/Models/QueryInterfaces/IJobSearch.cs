@@ -104,6 +104,8 @@ namespace CBApi.Models {
 
         IJobSearch WherePostedWithin(int numberOfDays);
 
+        IJobSearch WhereSearchView(string searchView);
+
         IJobSearch WhereSiteEntity(string value);
 
         IJobSearch WhereSOCCode(string value);
