@@ -282,8 +282,6 @@ namespace CBApi.Framework.Requests {
         }
 
         protected void AddParametersToRequest() {
-            _request.AddParameter("SearchView", "jobresults");
-
             AddKeywordsToRequest();
             AddCompanyNameToRequest();
             AddLocationToRequest();
