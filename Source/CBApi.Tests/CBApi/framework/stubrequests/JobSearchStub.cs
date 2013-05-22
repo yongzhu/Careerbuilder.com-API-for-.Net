@@ -39,7 +39,7 @@ namespace Tests.CBApi.models.requests {
         protected override void CheckForErrors(IRestResponse response) {
         }
 
-        public void AddParametersToRequest() {
+        public new void AddParametersToRequest() {
             base.AddParametersToRequest();
         }
 

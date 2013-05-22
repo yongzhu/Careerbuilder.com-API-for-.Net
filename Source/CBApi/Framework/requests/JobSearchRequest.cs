@@ -315,6 +315,7 @@ namespace CBApi.Framework.Requests {
             AddPageNumberToRequest();
             AddSiteEntityToRequest();
             AddSearchViewToRequest();
+            AddOrderByToRequest();
 
             AddFacets();
             AddApplyRequirementsToRequest();
@@ -435,6 +436,13 @@ namespace CBApi.Framework.Requests {
         private void AddLocationToRequest() {
             if (!string.IsNullOrEmpty(_Location)) {
                 _request.AddParameter("Location", _Location);
+            }
+        }
+
+        private void AddOrderByToRequest() {
+            if (!(_OrderBy == OrderByType.Relevance && _OrderDirection == OrderDirection.Descending)) {
+                _request.AddParameter("OrderBy", _OrderBy.ToString());
+                _request.AddParameter("OrderDirection", _OrderDirection.ToString());
             }
         }
 

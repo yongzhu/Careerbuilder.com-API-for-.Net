@@ -47,14 +47,10 @@ namespace CBApi.Framework {
             if (!String.IsNullOrWhiteSpace(response.Content)) {
                 var errors = new List<String>();
 
-                try {
-                    JObject json = JObject.Parse(response.Content);
-                    foreach (string error in json["Errors"].Select(e => (String)e).ToList<String>()) {
-                        if (!String.IsNullOrWhiteSpace(error))
-                            errors.Add(error);
-                    }
-                } catch (Exception ex) {
-
+                JObject json = JObject.Parse(response.Content);
+                foreach (string error in json["Errors"].Select(e => (String)e).ToList<String>()) {
+                    if (!String.IsNullOrWhiteSpace(error))
+                        errors.Add(error);
                 }
 
                 if (errors.Count > 0) {
