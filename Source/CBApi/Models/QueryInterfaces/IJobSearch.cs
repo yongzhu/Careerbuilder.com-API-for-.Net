@@ -24,7 +24,7 @@ namespace CBApi.Models {
         Pay,
         Title,
         Company,
-        Distace,
+        Distance,
         Location,
         Relevance
     }
