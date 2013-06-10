@@ -10,6 +10,8 @@ namespace CBApi.Models {
         public string StateCode { get; set; }
         public string CountryCode { get; set; }
         public string PostalCode { get; set; }
+        public bool Valid { get; set; }
+        public List<GeographySuggestion> GeographySuggestions { get; set; }
 
     }
 }
