@@ -215,6 +215,11 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        public IJobSearch WhereKeywordsBooleanOperator(BooleanOperator useValue) {
+            _BooleanOperator = useValue;
+            return this;
+        }
+
         public IJobSearch WhereLocation(string value) {
             _Location = value;
             return this;
@@ -442,6 +447,9 @@ namespace CBApi.Framework.Requests {
         private void AddKeywordsToRequest() {
             if (!string.IsNullOrEmpty(_Keywords)) {
                 _request.AddParameter("Keywords", _Keywords);
+            }
+            if (_BooleanOperator == BooleanOperator.OR) {
+                _request.AddParameter("BooleanOperator", _BooleanOperator.ToString());
             }
         }
 

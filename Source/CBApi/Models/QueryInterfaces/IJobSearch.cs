@@ -90,6 +90,8 @@ namespace CBApi.Models {
 
         IJobSearch WhereKeywords(string value);
 
+        IJobSearch WhereKeywordsBooleanOperator(BooleanOperator value);
+
         IJobSearch WhereLocation(string value);
 
         IJobSearch WhereLocation(float latitude, float longitude);
