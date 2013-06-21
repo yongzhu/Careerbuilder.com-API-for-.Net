@@ -1,7 +1,9 @@
 ﻿using System;
+
 namespace CBApi.Models.Responses {
     [Serializable]
     public class JobSearchResult {
+
         public string Company { get; set; }
         public string CompanyDID { get; set; }
         public string CompanyDetailsURL { get; set; }
@@ -21,5 +23,7 @@ namespace CBApi.Models.Responses {
         public string SimilarJobsURL { get; set; }
         public string JobTitle { get; set; }
         public string CompanyImageURL { get; set; }
+        public string JobBrandingIcons { get; set; }
+
     }
 }
