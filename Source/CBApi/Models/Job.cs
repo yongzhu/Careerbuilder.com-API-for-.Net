@@ -14,6 +14,8 @@ namespace CBApi.Models {
 
         public string Categories { get; set; }
 
+        public string CategoriesCodes { get; set; }
+
         public string Company { get; set; }
 
         public string CompanyDetailsURL { get; set; }
