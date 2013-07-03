@@ -31,8 +31,8 @@ namespace Tests.CBApi.framework {
             try {
                 ErrorParser.CheckForErrors(response.Object);
                 Assert.IsTrue(true);
-            } catch (Exception) {
-                Assert.Fail();
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
             }
         }
 

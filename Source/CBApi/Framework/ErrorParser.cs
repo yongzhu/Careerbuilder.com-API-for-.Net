@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using RestSharp;
+﻿using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CBApi.Framework {
     internal class ErrorParser {
+
         public static void CheckForErrors(IRestResponse response) {
             if (response != null) {
                 ParseResponseForErrorsNode(response);
@@ -18,34 +18,26 @@ namespace CBApi.Framework {
         }
 
         private static void ParseResponseForErrorsNode(IRestResponse response) {
+            if (string.IsNullOrWhiteSpace(response.Content)) {
+                return;
+            }
 
-            if (IsJson(response))
+            if ((response.ContentType ?? "").ToLower().StartsWith("application/json")) {
                 ParseJSONForErrorsNode(response);
-            else
+            } else {
                 ParseXmlForErrorsNode(response);
-        }
-
-        private static bool IsJson(IRestResponse response)
-        {
-            if (string.IsNullOrEmpty(response.ContentType))
-                return false;
-
-            var regex = new Regex("^application/json.*");
-            return regex.IsMatch(response.ContentType.ToLower());
+            }
         }
 
         private static void ParseXmlForErrorsNode(IRestResponse response) {
             var errors = new List<string>();
             var xml = new XmlDocument();
-            try {
-                xml.LoadXml(response.Content);
-                foreach (XmlNode item in xml.SelectNodes("//Error")) {
-                    if (!string.IsNullOrEmpty(item.InnerText)) {
-                        errors.Add(item.InnerText);
-                    }
-                }
-            } catch (XmlException) {
 
+            xml.LoadXml(response.Content);
+            foreach (XmlNode item in xml.SelectNodes("//Error")) {
+                if (!string.IsNullOrEmpty(item.InnerText)) {
+                    errors.Add(item.InnerText);
+                }
             }
 
             if (errors.Count > 0) {
@@ -86,5 +78,6 @@ namespace CBApi.Framework {
 
             }
         }
+
     }
 }
