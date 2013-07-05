@@ -153,6 +153,11 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        public IJobSearch WhereCountryCode(string country) {
+            _CountryCode = country;
+            return this;
+        }
+
         public IJobSearch WhereEducationCodeEquals(string educationCode) {
             if (!string.IsNullOrWhiteSpace(educationCode)) {
                 _EducationCode = educationCode.ToUpper();

@@ -76,6 +76,8 @@ namespace CBApi.Models {
 
         IJobSearch WhereCountryCode(CountryCode value);
 
+        IJobSearch WhereCountryCode(string country);
+
         IJobSearch WhereEducationCodeEquals(string educationCode);
 
         IJobSearch WhereEducationCodeMaximum(string educationCode);
