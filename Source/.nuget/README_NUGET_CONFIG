@@ -1,0 +1,18 @@
+Setting a machine specific 'repositoryPath' override may be considered harmful for
+teams that collaborate on the same repository.
+
+Ticketed Bugs:
+http://nuget.codeplex.com/discussions/400870
+http://nuget.codeplex.com/discussions/431666
+
+NuGet supports a hierarchy of .Config files so that there may be different settings
+between the repository folder, the team folder, and the developer's machine.  The
+one closest to the repository wins out.  There is a bug with the implementation of
+package restore when the 'repositoryPath' setting is overwritten.  One developer may
+set their "global packages" folder to be higher up in the directory tree.  If the
+package is lost and it needs to be "restored", the HintPath for references in the
+project files will change.  After that point, there will be a disconnect between
+different developer's machines for the location of a project's dlls.
+
+Until this bug is resolved, I am going to manually set the repositoryPath setting on
+all the CB GitHub repos.
