@@ -133,7 +133,9 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild">
+    <MSBuild Condition="'$(Configuration)' == 'Release'" Projects="..\.nuget\NuGet.msbuild" />
+  </Target>
+
 </Project>
