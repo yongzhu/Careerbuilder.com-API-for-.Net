@@ -12,13 +12,14 @@ namespace CBApi.Models
         public string SearchName { get; set; }
         public string Cobrand { get; set; }
         public string SiteID { get; set; }
-        public SearchParameters Parameters { get; set; }
+        public SearchParameters SavedSearchParameters { get; set; }
         public string IsDailyEmail { get; set; }
         public string ExternalUserID { get; set; }
         public string DeveloperKey { get; set; }
     }
 
     [Serializable]
+    [SerializeAs(Name="SavedSearchParameters")]
     public class SearchParameters
     {
         public string BooleanOperator { get; set; }

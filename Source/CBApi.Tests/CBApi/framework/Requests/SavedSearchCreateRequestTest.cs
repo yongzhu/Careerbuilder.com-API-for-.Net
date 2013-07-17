@@ -24,17 +24,17 @@ namespace Tests.CBApi.framework.requests
             dummyApp.IsDailyEmail = "none";
             dummyApp.ExternalUserID = "Nicholas.Busby.Test@CareerBuilder.com";
             dummyApp.DeveloperKey = "WDJ16BN6CQB69FP18Y8F";
-            dummyApp.Parameters = new SearchParameters();
-            dummyApp.Parameters.Radius = 30;
-            dummyApp.Parameters.PayHigh = 70;
-            dummyApp.Parameters.PayLow = 40;
-            dummyApp.Parameters.PostedWithin = 30;
-            dummyApp.Parameters.PayInfoOnly = false;
-            dummyApp.Parameters.Location = "Chicago, Il, Atlanta, Ga, New York, Ny";
-            dummyApp.Parameters.OrderDirection = "ascending";
-            dummyApp.Parameters.SpecificEducation = false;
-            dummyApp.Parameters.ExcludeNational = false;
-            dummyApp.Parameters.OrderBy = "Pay";
+            dummyApp.SavedSearchParameters = new SearchParameters();
+            dummyApp.SavedSearchParameters.Radius = 30;
+            dummyApp.SavedSearchParameters.PayHigh = 70;
+            dummyApp.SavedSearchParameters.PayLow = 40;
+            dummyApp.SavedSearchParameters.PostedWithin = 30;
+            dummyApp.SavedSearchParameters.PayInfoOnly = false;
+            dummyApp.SavedSearchParameters.Location = "Chicago, Il, Atlanta, Ga, New York, Ny";
+            dummyApp.SavedSearchParameters.OrderDirection = "ascending";
+            dummyApp.SavedSearchParameters.SpecificEducation = false;
+            dummyApp.SavedSearchParameters.ExcludeNational = false;
+            dummyApp.SavedSearchParameters.OrderBy = "Pay";
 
             //Mock
             var response = new RestResponse<SavedSearchCreateResponse> { Data = new SavedSearchCreateResponse(), ResponseStatus = ResponseStatus.Completed };
