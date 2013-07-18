@@ -180,6 +180,18 @@ namespace CBApi {
         }
 
         /// <summary>
+        /// Delete a saved search with /v1/savedsearch/delete.xml
+        /// </summary>
+        /// <param name="search">The search being deleted</param>
+        /// <returns></returns>
+        public SavedSearchDeleteResponse DeleteSavedSearchXML(RequestSavedSearchDelete search) {
+            var req = new SavedSearchDeleteRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(search);
+        }
+
+        /// <summary>
         /// Make a call to /v1/categories
         /// </summary>
         /// <returns>A Category Request to query against</returns>
