@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CBApi\framework\ErrorParserTests.cs" />
     <Compile Include="CBApi\framework\requests\BlankAppStub.cs" />
+    <Compile Include="CBApi\framework\requests\SavedSearchDeleteRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\TargetSiteTest.cs" />
     <Compile Include="CBApi\framework\requests\JobRecommendationsRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\JobRecommendationsWithUserPreferencesRequestTest.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="CBApi\framework\stubrequests\CategoriesStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\JobRecRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\JobRecWithUserPrefRequestStub.cs" />
+    <Compile Include="CBApi\framework\stubrequests\SavedSearchDeleteRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\SubmitApplicationRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\PostRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\EmployeeTypesStub.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="CBApi\framework\requests\JobRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\EmployeeTypesRequestTest.cs" />
     <Compile Include="CBApi\framework\stubrequests\UserReqStub.cs" />
+    <Compile Include="CBApi\models\SavedSearchDeleteTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CBApi\CBApiTest.cs" />
   </ItemGroup>
@@ -120,6 +123,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="testdata\ResponseJobSearchWithFacets.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\SavedSearchDeleteResult.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

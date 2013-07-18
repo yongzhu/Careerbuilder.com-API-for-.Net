@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResponseSavedSearchDelete>
+  <Request>
+    <DeveloperKey>WD******************</DeveloperKey>
+    <ExternalID>b5**************************************************************</ExternalID>
+    <ExternalUserID>ec**************************************************************</ExternalUserID>
+    <HostSite>US</HostSite>
+  </Request>
+  <Errors/>
+  <Status>Success</Status>
+</ResponseSavedSearchDelete>
