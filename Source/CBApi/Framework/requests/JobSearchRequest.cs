@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using CBApi.Models;
 using CBApi.Models.Responses;
 using CBApi.Models.Service;
 using RestSharp;
+using System;
 
 namespace CBApi.Framework.Requests {
     internal class JobSearchRequest : GetRequest, IJobSearch {
@@ -13,6 +15,7 @@ namespace CBApi.Framework.Requests {
         protected bool _ExcludeJobsWithoutSalary, _ExcludeNationwide, _ExcludeNontraditional, _SpecificEducation, _ShowFacets;
         protected string _CompanyName = "";
         protected string _CountryCode = "";
+        protected string _HostSite = "US";
         protected string _EducationCode = "";
         protected string _Keywords = "";
         protected string _Location = "";
@@ -148,13 +151,17 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        [Obsolete("CountryCode and HostSite enums in this repo as copies of ones in the Matrix is not scalable")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IJobSearch WhereCountryCode(CountryCode value) {
             _CountryCode = value.ToString();
             return this;
         }
 
         public IJobSearch WhereCountryCode(string country) {
-            _CountryCode = country;
+            if (!string.IsNullOrWhiteSpace(country)) {
+                _CountryCode = country;
+            }
             return this;
         }
 
@@ -201,8 +208,17 @@ namespace CBApi.Framework.Requests {
             return this;
         }
 
+        [Obsolete("CountryCode and HostSite enums in this repo as copies of ones in the Matrix is not scalable")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IJobSearch WhereHostSite(HostSite value) {
             _CountryCode = value.ToString();
+            return this;
+        }
+            
+        public IJobSearch WhereHostSite(string myHostSite) {
+            if (!string.IsNullOrWhiteSpace(myHostSite)) {
+                _HostSite = myHostSite;
+            }
             return this;
         }
 
@@ -311,6 +327,7 @@ namespace CBApi.Framework.Requests {
             AddPayLowToRequest();
             AddPayHighToRequest();
             AddCountryCodeToRequest();
+            AddHostSiteToRequest();
             AddCategoriesToRequest();
             AddIndustriesToRequest();
             AddCompanyDIDsToRequest();
@@ -436,6 +453,12 @@ namespace CBApi.Framework.Requests {
 
             foreach (var facet in _Facets) {
                 _request.AddParameter(facet.Key.ToString(), facet.Value);
+            }
+        }
+
+        private void AddHostSiteToRequest() {
+            if (!string.IsNullOrWhiteSpace(_HostSite)) {
+                _request.AddParameter("HostSite", _HostSite);
             }
         }
 
