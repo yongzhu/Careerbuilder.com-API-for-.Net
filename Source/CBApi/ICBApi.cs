@@ -28,13 +28,13 @@ namespace CBApi
         ResponseJobReport JobReport(string jobDid);
         ResponseApplication SubmitApplication(Application app);
         ResponseApplication SubmitApplication(RequestApplication app);
-<<<<<<< HEAD
+
         SavedSearchCreateResponse CreateSavedSearch(SavedSearchCreate app);
         SavedSearchRetrieveResponseModel RetrieveSavedSearch(SavedSearchRetrieveRequestModel app);
         SavedSearchListResponseModel ListSavedSearches(SavedSearchListRequestModel app);
         SavedSearchUpdateResponseModel UpdateSavedSearche(SavedSearchUpdateRequestModel app);
-=======
+
         SavedSearchDeleteResponse DeleteSavedSearchXML(RequestSavedSearchDelete search);
->>>>>>> 2c21cb58986874e2078d5a26f7a6078ffac32160
+
     }
 }
