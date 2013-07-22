@@ -29,6 +29,8 @@ namespace CBApi
         ResponseApplication SubmitApplication(Application app);
         ResponseApplication SubmitApplication(RequestApplication app);
         SavedSearchCreateResponse CreateSavedSearch(SavedSearchCreate app);
-        
+        SavedSearchRetrieveResponseModel RetrieveSavedSearch(SavedSearchRetrieveRequestModel app);
+        SavedSearchListResponseModel ListSavedSearches(SavedSearchListRequestModel app);
+        SavedSearchUpdateResponseModel UpdateSavedSearche(SavedSearchUpdateRequestModel app);
     }
 }

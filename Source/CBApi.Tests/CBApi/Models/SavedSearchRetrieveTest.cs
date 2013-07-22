@@ -9,17 +9,18 @@ using CBApi.Models;
 namespace Tests.CBApi.models
 {
     [TestClass]
-    public class SavedSearchCreateTest
+    public class SavedSearchRetrieveTest
     {
         [TestMethod]
         [DeploymentItem("testdata\\SaveSearchCreateData.xml")]
         public void DeserializationWorks_WhenPassedRightXML()
         {
+            //using the same XML as SavedSearchCreate since they output the same
             var xmlPath = Path.Combine(Environment.CurrentDirectory, "SaveSearchCreateData.xml");
             var doc = XDocument.Load(xmlPath);
 
             var xml = new XmlDeserializer();
-            var output = xml.Deserialize<SavedSearchCreateResponse>(new RestResponse() { Content = doc.ToString() });
+            var output = xml.Deserialize<SavedSearchRetrieveResponseModel>(new RestResponse() { Content = doc.ToString() });
             Assert.IsNotNull(output, "no deserialization worked");
             Assert.IsNotNull(output.SavedSearch.SavedSearchParameters, "SavedSearchParameters deserialization Did not work");
             Assert.AreEqual("lotsloc", output.SavedSearch.SearchName, "search name did not dezerialize");

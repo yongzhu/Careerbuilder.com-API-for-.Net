@@ -19,22 +19,7 @@ namespace Tests.CBApi.framework.requests
             //setup
             var request = new SavedSearchCreateRequestStub("DevKey", "api.careerbuilder.com", "", "", 12345);
             var dummyApp = new SavedSearchCreate();
-            dummyApp.HostSite = "US";
-            dummyApp.SearchName = "lotsloc";
-            dummyApp.IsDailyEmail = "none";
-            dummyApp.ExternalUserID = "Nicholas.Busby.Test@CareerBuilder.com";
-            dummyApp.DeveloperKey = "WDJ16BN6CQB69FP18Y8F";
-            dummyApp.SavedSearchParameters = new SearchParameters();
-            dummyApp.SavedSearchParameters.Radius = 30;
-            dummyApp.SavedSearchParameters.PayHigh = 70;
-            dummyApp.SavedSearchParameters.PayLow = 40;
-            dummyApp.SavedSearchParameters.PostedWithin = 30;
-            dummyApp.SavedSearchParameters.PayInfoOnly = false;
-            dummyApp.SavedSearchParameters.Location = "Chicago, Il, Atlanta, Ga, New York, Ny";
-            dummyApp.SavedSearchParameters.OrderDirection = "ascending";
-            dummyApp.SavedSearchParameters.SpecificEducation = false;
-            dummyApp.SavedSearchParameters.ExcludeNational = false;
-            dummyApp.SavedSearchParameters.OrderBy = "Pay";
+            dummyApp = SetUpApp(dummyApp);
 
             //Mock
             var response = new RestResponse<SavedSearchCreateResponse> { Data = new SavedSearchCreateResponse(), ResponseStatus = ResponseStatus.Completed };
@@ -54,6 +39,27 @@ namespace Tests.CBApi.framework.requests
             SavedSearchCreateResponse rest = request.Submit(dummyApp);
             restReq.VerifyAll();
             restClient.VerifyAll();
+        }
+
+        private SavedSearchCreate SetUpApp(SavedSearchCreate dummyApp)
+        {
+            dummyApp.HostSite = "US";
+            dummyApp.SearchName = "lotsloc";
+            dummyApp.IsDailyEmail = "none";
+            dummyApp.ExternalUserID = "Nicholas.Busby.Test@CareerBuilder.com";
+            dummyApp.DeveloperKey = "WDJ16BN6CQB69FP18Y8F";
+            dummyApp.SavedSearchParameters = new SearchParameters();
+            dummyApp.SavedSearchParameters.Radius = 30;
+            dummyApp.SavedSearchParameters.PayHigh = 70;
+            dummyApp.SavedSearchParameters.PayLow = 40;
+            dummyApp.SavedSearchParameters.PostedWithin = 30;
+            dummyApp.SavedSearchParameters.PayInfoOnly = false;
+            dummyApp.SavedSearchParameters.Location = "Chicago, Il, Atlanta, Ga, New York, Ny";
+            dummyApp.SavedSearchParameters.OrderDirection = "ascending";
+            dummyApp.SavedSearchParameters.SpecificEducation = false;
+            dummyApp.SavedSearchParameters.ExcludeNational = false;
+            dummyApp.SavedSearchParameters.OrderBy = "Pay";
+            return dummyApp;
         }
     }
 }

@@ -3,12 +3,11 @@ using CBApi.Framework.Requests;
 using RestSharp;
 using Tests.CBApi.models.service;
 
-
 namespace Tests.CBApi.models.requests
 {
-    internal class SavedSearchCreateRequestStub :SavedSearchCreateRequest
+    class SavedSearchUpdateRequestStub : SavedSearchUpdateRequest
     {
-        public SavedSearchCreateRequestStub(string key, string domain, string cobrand, string siteid, int timeout)
+        public SavedSearchUpdateRequestStub(string key, string domain, string cobrand, string siteid, int timeout)
             : base(new APISettings() { DevKey = key, CobrandCode = cobrand, SiteId = siteid, TargetSite = new TargetSiteMock(domain), TimeoutMS = timeout })
         {
         }

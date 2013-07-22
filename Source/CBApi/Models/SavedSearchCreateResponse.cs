@@ -41,7 +41,7 @@ namespace CBApi.Models
         public string IndustryCodes { get; set; }
         public string JobTitle { get; set; }
         public string Keywords { get; set; }
-        public string Location { get; set; }
+        public string Location { get; set;} 
         public string OrderBy { get; set; }
         public string OrderDirection { get; set; }
         public int PayHigh { get; set; }

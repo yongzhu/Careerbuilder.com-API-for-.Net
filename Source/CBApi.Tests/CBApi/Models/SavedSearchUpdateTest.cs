@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using CBApi.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using RestSharp.Deserializers;
-using System.Xml.Linq;
+using System;
 using System.IO;
-using CBApi.Models;
+using System.Xml.Linq;
 
 namespace Tests.CBApi.models
 {
     [TestClass]
-    public class SavedSearchCreateTest
+    public class SavedSearchUpdateTest
     {
         [TestMethod]
         [DeploymentItem("testdata\\SaveSearchCreateData.xml")]
@@ -19,7 +19,7 @@ namespace Tests.CBApi.models
             var doc = XDocument.Load(xmlPath);
 
             var xml = new XmlDeserializer();
-            var output = xml.Deserialize<SavedSearchCreateResponse>(new RestResponse() { Content = doc.ToString() });
+            var output = xml.Deserialize<SavedSearchUpdateResponseModel>(new RestResponse() { Content = doc.ToString() });
             Assert.IsNotNull(output, "no deserialization worked");
             Assert.IsNotNull(output.SavedSearch.SavedSearchParameters, "SavedSearchParameters deserialization Did not work");
             Assert.AreEqual("lotsloc", output.SavedSearch.SearchName, "search name did not dezerialize");

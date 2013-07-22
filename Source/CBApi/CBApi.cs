@@ -193,6 +193,45 @@ namespace CBApi {
         }
 
         /// <summary>
+        /// Retrieve a single saved search
+        /// </summary>
+        /// <param name="app">Info to lead to the saved search</param>
+        /// <returns></returns>
+        public SavedSearchRetrieveResponseModel RetrieveSavedSearch(SavedSearchRetrieveRequestModel app)
+        {
+            var req = new SavedSearchRetrieveRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(app);
+        }
+
+        /// <summary>
+        /// Lists all saved searches from a single user
+        /// </summary>
+        /// <param name="app">info to lead to the users saved searches</param>
+        /// <returns></returns>
+        public SavedSearchListResponseModel ListSavedSearches(SavedSearchListRequestModel app)
+        {
+            var req = new SavedSearchListRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(app);
+        }
+
+        /// <summary>
+        /// Updates a SavedSearch
+        /// </summary>
+        /// <param name="app">The data for the savedsearch</param>
+        /// <returns></returns>
+        public SavedSearchUpdateResponseModel UpdateSavedSearche(SavedSearchUpdateRequestModel app)
+        {
+            var req = new SavedSearchUpdateRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(app);
+        }
+
+        /// <summary>
         /// Make a call to /v1/categories
         /// </summary>
         /// <returns>A Category Request to query against</returns>
