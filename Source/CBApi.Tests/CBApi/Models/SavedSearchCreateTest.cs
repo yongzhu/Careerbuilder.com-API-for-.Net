@@ -17,7 +17,7 @@ namespace Tests.CBApi.models
         {
             var xmlPath = Path.Combine(Environment.CurrentDirectory, "SaveSearchCreateData.xml");
             var doc = XDocument.Load(xmlPath);
-
+            
             var xml = new XmlDeserializer();
             var output = xml.Deserialize<SavedSearchCreateResponse>(new RestResponse() { Content = doc.ToString() });
             Assert.IsNotNull(output, "no deserialization worked");
