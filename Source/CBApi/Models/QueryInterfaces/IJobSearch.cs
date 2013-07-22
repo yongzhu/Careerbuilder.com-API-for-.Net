@@ -88,6 +88,8 @@ namespace CBApi.Models {
 
         IJobSearch WhereHostSite(HostSite value);
 
+        IJobSearch WhereHostSite(string myHostSite);
+
         IJobSearch WhereIndustry(params string[] industries);
 
         IJobSearch WhereKeywords(string value);

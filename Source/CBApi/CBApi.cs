@@ -180,6 +180,7 @@ namespace CBApi {
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// create a saved search
         /// </summary>
         /// <param name="app">the saved search that is wanting to be saved</param>
@@ -229,6 +230,17 @@ namespace CBApi {
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
             return req.Submit(app);
+=======
+        /// Delete a saved search with /v1/savedsearch/delete.xml
+        /// </summary>
+        /// <param name="search">The search being deleted</param>
+        /// <returns></returns>
+        public SavedSearchDeleteResponse DeleteSavedSearchXML(RequestSavedSearchDelete search) {
+            var req = new SavedSearchDeleteRequest(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(search);
+>>>>>>> 2c21cb58986874e2078d5a26f7a6078ffac32160
         }
 
         /// <summary>
