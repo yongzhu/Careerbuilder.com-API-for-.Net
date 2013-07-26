@@ -21,7 +21,7 @@ namespace CBApi.Framework.Requests
         }
 
         public SavedSearchListResponseModel Submit(SavedSearchListRequestModel search) {
-            _request.AddBody(search);
+            //_request.AddBody(search);
             search.DeveloperKey = DeveloperKey;
             AddParametersToRequest(search);
             base.BeforeRequest();
@@ -31,7 +31,7 @@ namespace CBApi.Framework.Requests
         }
 
         protected virtual void AddParametersToRequest(SavedSearchListRequestModel search) {
-            _request.AddParameter("developerkey", search.DeveloperKey);
+            //No need to add developer key GetRequest adds that automatically
             _request.AddParameter("externaluserid", search.ExternalUserID);
         }
     }
