@@ -19,10 +19,7 @@ namespace Tests.CBApi.framework.requests
             //Mock
             var response = new RestResponse<SavedSearchListResponseModel> { Data = new SavedSearchListResponseModel(), ResponseStatus = ResponseStatus.Completed };
             var restReq = new Mock<IRestRequest>();
-            restReq.Setup(x => x.AddBody(dummyApp));
-
-
-
+            
             var restClient = new Mock<IRestClient>();
             restClient.SetupSet(x => x.BaseUrl = "https://api.careerbuilder.com/v1/SavedSearch/List");
             restClient.Setup(x => x.Execute<SavedSearchListResponseModel>(It.IsAny<IRestRequest>())).Returns(response);
