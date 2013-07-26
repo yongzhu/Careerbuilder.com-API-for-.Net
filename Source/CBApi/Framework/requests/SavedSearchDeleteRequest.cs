@@ -17,6 +17,7 @@ namespace CBApi.Framework.Requests
         }
 
         public SavedSearchDeleteResponse Submit(RequestSavedSearchDelete deleteMsg) {
+            deleteMsg.DeveloperKey = DeveloperKey;
             _request.AddBody(deleteMsg);
             base.BeforeRequest();
             IRestResponse<SavedSearchDeleteResponse> response = _client.Execute<SavedSearchDeleteResponse>(_request);
