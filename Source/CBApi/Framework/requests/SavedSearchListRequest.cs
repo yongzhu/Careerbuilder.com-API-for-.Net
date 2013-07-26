@@ -21,7 +21,6 @@ namespace CBApi.Framework.Requests
         }
 
         public SavedSearchListResponseModel Submit(SavedSearchListRequestModel search) {
-            //_request.AddBody(search);
             search.DeveloperKey = DeveloperKey;
             AddParametersToRequest(search);
             base.BeforeRequest();
