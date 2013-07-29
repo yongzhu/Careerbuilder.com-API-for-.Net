@@ -26,5 +26,6 @@ namespace CBApi.Models
         public string SearchName { get; set; }
         public string HostSite { get; set; }
         public string ExternalID { get; set; }
+        public string JRDID { get; set; }
     }
 }
