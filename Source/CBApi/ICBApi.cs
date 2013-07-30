@@ -32,7 +32,7 @@ namespace CBApi
         SavedSearchCreateResponse CreateSavedSearch(SavedSearchCreate app);
         SavedSearchRetrieveResponseModel RetrieveSavedSearch(SavedSearchRetrieveRequestModel app);
         SavedSearchListResponseModel ListSavedSearches(SavedSearchListRequestModel app);
-        SavedSearchUpdateResponseModel UpdateSavedSearche(SavedSearchUpdateRequestModel app);
+        SavedSearchUpdateResponseModel UpdateSavedSearch(SavedSearchUpdateRequestModel app);
 
         SavedSearchDeleteResponse DeleteSavedSearchXML(RequestSavedSearchDelete search);
 

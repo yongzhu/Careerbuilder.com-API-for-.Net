@@ -224,7 +224,7 @@ namespace CBApi {
         /// </summary>
         /// <param name="app">The data for the savedsearch</param>
         /// <returns></returns>
-        public SavedSearchUpdateResponseModel UpdateSavedSearche(SavedSearchUpdateRequestModel app)
+        public SavedSearchUpdateResponseModel UpdateSavedSearch(SavedSearchUpdateRequestModel app)
         {
             var req = new SavedSearchUpdateRequest(_Settings);
             WireBeforeRequestEvents(req);
