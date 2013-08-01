@@ -19,9 +19,6 @@ namespace Tests.CBApi.framework.requests
             //Mock
             var response = new RestResponse<SavedSearchRetrieveResponseModel> { Data = new SavedSearchRetrieveResponseModel(), ResponseStatus = ResponseStatus.Completed };
             var restReq = new Mock<IRestRequest>();
-            restReq.Setup(x => x.AddBody(dummyApp));
-
-
 
             var restClient = new Mock<IRestClient>();
             restClient.SetupSet(x => x.BaseUrl = "https://api.careerbuilder.com/v1/SavedSearch/retrieve");
