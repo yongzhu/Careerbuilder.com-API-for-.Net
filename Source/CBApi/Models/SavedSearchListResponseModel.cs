@@ -1,31 +1,35 @@
-﻿using RestSharp.Serializers;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RestSharp.Serializers;
 
-namespace CBApi.Models
-{
+namespace CBApi.Models {
     [Serializable]
-    [SerializeAs(Name="SavedJobSearches")]
-    public class SavedSearchListResponseModel
-    {
+    [SerializeAs(Name = "SavedJobSearches")]
+    public class SavedSearchListResponseModel {
+
         public string Errors { get; set; }
+
         public Searches SavedSearches { get; set; }
+
     }
 
     [Serializable]
-    [SerializeAs(Name="SavedSearches")]
-    public class Searches
-    {
+    [SerializeAs(Name = "SavedSearches")]
+    public class Searches {
+
         public List<SavedSearch> SavedSearchList { get; set; }
+
     }
 
     [Serializable]
-    [SerializeAs(Name="SavedSearch")]
-    public class SavedSearch
-    {
+    [SerializeAs(Name = "SavedSearch")]
+    public class SavedSearch {
+
         public string SearchName { get; set; }
+
         public string HostSite { get; set; }
+
         public string ExternalID { get; set; }
-        public string JRDID { get; set; }
+
     }
 }

@@ -1,27 +1,17 @@
 ﻿using CBApi.Models;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace CBApi.Framework.Requests
-{
-    internal class SavedSearchListRequest : GetRequest
-    {
-        private string DeveloperKey { get; set; }
+namespace CBApi.Framework.Requests {
+    internal class SavedSearchListRequest : GetRequest {
 
-        public SavedSearchListRequest(APISettings settings)
-            : base(settings) {
-            DeveloperKey = settings.DevKey;
-        }
+        public SavedSearchListRequest(APISettings settings) : base(settings) { }
 
         public override string BaseUrl {
             get { return "/v1/SavedSearch/List"; }
         }
 
         public SavedSearchListResponseModel Submit(SavedSearchListRequestModel search) {
-            search.DeveloperKey = DeveloperKey;
+            search.DeveloperKey = _Settings.DevKey;
             AddParametersToRequest(search);
             base.BeforeRequest();
             IRestResponse<SavedSearchListResponseModel> response = _client.Execute<SavedSearchListResponseModel>(_request);
@@ -30,8 +20,8 @@ namespace CBApi.Framework.Requests
         }
 
         protected virtual void AddParametersToRequest(SavedSearchListRequestModel search) {
-            //No need to add developer key GetRequest adds that automatically
             _request.AddParameter("externaluserid", search.ExternalUserID);
         }
+
     }
 }
