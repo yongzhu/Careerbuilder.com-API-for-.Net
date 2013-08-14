@@ -3,26 +3,16 @@ using System.Collections.Generic;
 using RestSharp.Serializers;
 
 namespace CBApi.Models {
-    [Serializable]
-    [SerializeAs(Name = "SavedJobSearches")]
+    [Serializable, SerializeAs(Name = "SavedJobSearches")]
     public class SavedSearchListResponseModel {
 
         public string Errors { get; set; }
 
-        public Searches SavedSearches { get; set; }
+        public List<SavedSearch> SavedSearches { get; set; }
 
     }
 
-    [Serializable]
-    [SerializeAs(Name = "SavedSearches")]
-    public class Searches {
-
-        public List<SavedSearch> SavedSearchList { get; set; }
-
-    }
-
-    [Serializable]
-    [SerializeAs(Name = "SavedSearch")]
+    [Serializable, SerializeAs(Name = "SavedSearch")]
     public class SavedSearch {
 
         public string SearchName { get; set; }

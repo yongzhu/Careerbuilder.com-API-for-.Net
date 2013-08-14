@@ -97,7 +97,7 @@
     <Compile Include="CBApi\models\RecommendJobResultTest.cs" />
     <Compile Include="CBApi\models\ResponseJobSearchTest.cs" />
     <Compile Include="CBApi\models\SavedSearchCreateTest.cs" />
-    <Compile Include="CBApi\models\SavedSearchListTest.cs" />
+    <Compile Include="CBApi\models\SavedSearchListResponseModelTest.cs" />
     <Compile Include="CBApi\models\SavedSearchRetrieveTest.cs" />
     <Compile Include="CBApi\models\SavedSearchUpdateTest.cs" />
     <Compile Include="CBApi\models\service\TargetSiteMock.cs" />
@@ -137,7 +137,7 @@
     <Content Include="testdata\ResponseJobSearchWithFacets.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="testdata\SavedSearchListData.xml">
+    <Content Include="testdata\SavedSearchListResponseModel.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="testdata\SaveSearchCreateData.xml">
