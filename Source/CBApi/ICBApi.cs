@@ -35,6 +35,6 @@ namespace CBApi
         SavedSearchUpdateResponseModel UpdateSavedSearch(SavedSearchUpdateRequestModel app);
 
         SavedSearchDeleteResponse DeleteSavedSearchXML(RequestSavedSearchDelete search);
-
+        AnonymousApplicationResponse AnonymousApplication(AnonymousApplicationRequest request);
     }
 }

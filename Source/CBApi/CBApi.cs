@@ -241,7 +241,19 @@ namespace CBApi {
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
             return req.Submit(search);
+        }
 
+        /// <summary>
+        /// Anonymous apply with /v2/Application/submit
+        /// </summary>
+        /// <param name="request">the input for the application</param>
+        /// <returns></returns>
+        public AnonymousApplicationResponse AnonymousApplication(AnonymousApplicationRequest request)
+        {
+            var req = new AnonymousApplication(_Settings);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(request);
         }
 
         /// <summary>
