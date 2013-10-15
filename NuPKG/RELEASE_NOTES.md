@@ -1,5 +1,9 @@
 # CareerBuilder.com API Client Release Notes
 
+### 2.0.1.0
+
+* Added new apis and elements to pre-existing models.
+
 ### 2.0.0.0
 
 * Major version bump because of the length of time since last release
