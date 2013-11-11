@@ -67,6 +67,7 @@
     <Compile Include="Framework\Requests\OAuthRedirectBuilder.cs" />
     <Compile Include="Framework\Requests\JobReportRequest.cs" />
     <Compile Include="Framework\Requests\PostRequest.cs" />
+    <Compile Include="Framework\Requests\PutRequest.cs" />
     <Compile Include="Framework\Requests\SavedSearchCreateRequest.cs" />
     <Compile Include="Framework\Requests\SavedSearchListRequest.cs" />
     <Compile Include="Framework\Requests\SavedSearchRetrieveRequest.cs" />
