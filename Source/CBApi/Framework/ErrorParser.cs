@@ -1,11 +1,12 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
+using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using RestSharp.Deserializers;
-using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
 
 namespace CBApi.Framework {
     internal class ErrorParser {
@@ -33,16 +34,46 @@ namespace CBApi.Framework {
             var errors = new List<string>();
             var xml = new XmlDocument();
 
-            xml.LoadXml(response.Content);
+            string filteredXmlContent = GetXmlContentWithoutNamespaces(response.Content);
+            xml.LoadXml(filteredXmlContent);
+
+            //xml.LoadXml(response.Content);
             foreach (XmlNode item in xml.SelectNodes("//Error")) {
                 if (!string.IsNullOrEmpty(item.InnerText)) {
                     errors.Add(item.InnerText);
                 }
             }
 
+            if (errors.Count == 0) {
+                XmlNode errorsNode = xml.SelectSingleNode("//Errors");
+                foreach (XmlNode error in errorsNode.SelectNodes("//string")) {
+                    errors.Add(error.InnerText);
+                }
+            }
+
             if (errors.Count > 0) {
                 throw new APIException(errors[0], errors);
             }
+        }
+
+        //Implemented based on interface, not part of algorithm
+        public static string GetXmlContentWithoutNamespaces(string xmlDocument) {
+            XElement xmlDocumentWithoutNamespaces = RemoveAllNamespaces(XElement.Parse(xmlDocument));
+            return xmlDocumentWithoutNamespaces.ToString();
+        }
+
+        //Core recursion function
+        private static XElement RemoveAllNamespaces(XElement xmlDocument) {
+            if (!xmlDocument.HasElements) {
+                XElement xElement = new XElement(xmlDocument.Name.LocalName);
+                xElement.Value = xmlDocument.Value;
+
+                foreach (XAttribute attribute in xmlDocument.Attributes())
+                    xElement.Add(attribute);
+
+                return xElement;
+            }
+            return new XElement(xmlDocument.Name.LocalName, xmlDocument.Elements().Select(el => RemoveAllNamespaces(el)));
         }
 
         private static void ParseJSONForErrorsNode(IRestResponse response) {

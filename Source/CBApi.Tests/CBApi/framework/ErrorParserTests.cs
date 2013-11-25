@@ -136,5 +136,45 @@ namespace Tests.CBApi.framework {
                 Assert.AreEqual(2, ex.APIErrors.Count);
             }
         }
+
+        [TestMethod]
+        public void CheckForErrors_ThrowsAPIException_WhenThereWasAnErrorNode_AndNamespaces() {
+            //Mock crap
+            var response = new Mock<IRestResponse>();
+            response.Setup(x => x.Content).Returns("<ResponseWrapperOfanyType xmlns:i=" + '"' + "http://www.w3.org/2001/XMLSchema-instance" + '"' + " xmlns=" + '"' + "http://schemas.datacontract.org/2004/07/ConsumerWebApi.Models.Responses" + '"' +
+                "><Errors xmlns:d2p1=" + '"' + "http://schemas.microsoft.com/2003/10/Serialization/Arrays" + '"' + "><d2p1:string>The Developer key you have provided does not have permission to preform this request.</d2p1:string></Errors>" +
+                "<Results xmlns:d2p1=" + '"' + "http://schemas.microsoft.com/2003/10/Serialization/Arrays" + '"' + " /><ReturnedResults>0</ReturnedResults><Status>Error</Status><Timestamp>2013-11-25T10:00:10.1547889-05:00</Timestamp>" +
+                "<TotalResults>0</TotalResults></ResponseWrapperOfanyType>");
+            response.Setup(x => x.ResponseStatus).Returns(ResponseStatus.Error);
+            response.Setup(x => x.ErrorMessage).Returns("I am on Fire, thanks now I am dead");
+
+            try {
+                ErrorParser.CheckForErrors(response.Object);
+                Assert.Fail();
+            } catch (APIException ex) {
+                Assert.AreEqual("The Developer key you have provided does not have permission to preform this request.", ex.Message);
+                Assert.AreEqual(1, ex.APIErrors.Count);
+            }
+        }
+
+        [TestMethod]
+        public void CheckForErrors_ThrowsAPIExceptionWithMultipleMessages_WhenThereAreAllKindsOfErrors_AndNamespaces() {
+            //Mock crap
+            var response = new Mock<IRestResponse>();
+            response.Setup(x => x.Content).Returns("<ResponseWrapperOfanyType xmlns:i=" + '"' + "http://www.w3.org/2001/XMLSchema-instance" + '"' + " xmlns=" + '"' + "http://schemas.datacontract.org/2004/07/ConsumerWebApi.Models.Responses" + '"' +
+                "><Errors xmlns:d2p1=" + '"' + "http://schemas.microsoft.com/2003/10/Serialization/Arrays" + '"' + "><d2p1:string>The Developer key you have provided does not have permission to preform this request.</d2p1:string>" +
+                "<d2p1:string>You smell funny.</d2p1:string></Errors>" + "<Results xmlns:d2p1=" + '"' + "http://schemas.microsoft.com/2003/10/Serialization/Arrays" + '"' + " /><ReturnedResults>0</ReturnedResults><Status>Error</Status>" +
+                "<Timestamp>2013-11-25T10:00:10.1547889-05:00</Timestamp><TotalResults>0</TotalResults></ResponseWrapperOfanyType>");
+            response.Setup(x => x.ResponseStatus).Returns(ResponseStatus.Error);
+            response.Setup(x => x.ErrorMessage).Returns("I am on Fire, thanks now I am dead");
+
+            try {
+                ErrorParser.CheckForErrors(response.Object);
+                Assert.Fail();
+            } catch (APIException ex) {
+                Assert.AreEqual("The Developer key you have provided does not have permission to preform this request.", ex.Message);
+                Assert.AreEqual(2, ex.APIErrors.Count);
+            }
+        }
     }
 }
