@@ -48,7 +48,7 @@ namespace CBApi.Framework.Requests
         protected virtual void BeforeRequest()
         {
             _client.BaseUrl = PutRequestURL();
-            _request.AddParameter("DeveloperKey", _Settings.DevKey);
+            AddDevKey();
             _request.RequestFormat = DataFormat.Xml;
             _request.Timeout = _Settings.TimeoutMS;
             if (!string.IsNullOrEmpty(_Settings.TargetSite.Host))
@@ -60,6 +60,11 @@ namespace CBApi.Framework.Requests
                 _request.AddHeader(item.Key, item.Value);
             }
             _BeforeRequestEvent(new RequestEventData(_client, _request, null));
+        }
+
+        private void AddDevKey()
+        {
+            _request.AddHeader("DeveloperKey", _Settings.DevKey);
         }
 
         protected virtual void CheckForErrors(IRestResponse response)
