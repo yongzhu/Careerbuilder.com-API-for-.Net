@@ -46,8 +46,10 @@ namespace CBApi.Framework {
 
             if (errors.Count == 0) {
                 XmlNode errorsNode = xml.SelectSingleNode("//Errors");
-                foreach (XmlNode error in errorsNode.SelectNodes("//string")) {
-                    errors.Add(error.InnerText);
+                if (errorsNode != null) {
+                    foreach (XmlNode error in errorsNode.SelectNodes("//string")) {
+                        errors.Add(error.InnerText);
+                    }
                 }
             }
 
