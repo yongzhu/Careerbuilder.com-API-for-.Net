@@ -76,11 +76,11 @@ namespace Tests.CBApi.framework.requests {
             //Setup
             var newSite = new TargetSiteMock("127.0.0.1") { SetHost = "www.google.com" };
             var settings = new APISettings() { DevKey = "DevKey", CobrandCode = "this is a cobrand", SiteId = "this is a siteid", TimeoutMS = 12345, TargetSite = newSite };
-            var request = new GetRequestStub(settings);
+            var request = new PostRequestStub(settings);
 
             //Mock crap
             var restReq = new Mock<IRestRequest>();
-            restReq.Setup(x => x.AddParameter("DeveloperKey", settings.DevKey));
+            restReq.Setup(x => x.AddHeader("DeveloperKey", settings.DevKey));
             restReq.Setup(x => x.AddHeader("Host", "www.google.com"));
 
             var restClient = new Mock<IRestClient>();
@@ -88,7 +88,7 @@ namespace Tests.CBApi.framework.requests {
             request.Client = restClient.Object;
 
             //Assert
-            request.RunBeforeGet();
+            request.RunBeforeRequest();
             restReq.VerifyAll();
         }
 
