@@ -34,6 +34,8 @@ namespace CBApi.Models {
 
         public string ContactInfoPhone { get; set; }
 
+        public string CustomApplyType { get; set; }
+
         public string DegreeRequired { get; set; }
 
         public string DID { get; set; }
