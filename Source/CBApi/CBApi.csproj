@@ -127,6 +127,8 @@
     <Compile Include="Models\SavedSearchDeleteResponse.cs" />
     <Compile Include="Models\SearchLocation.cs" />
     <Compile Include="Models\Service\CareerBuilder.Com.cs" />
+    <Compile Include="Models\Service\CareerBuilderComCN.cs" />
+    <Compile Include="Models\Service\CareerBuilderEU.cs" />
     <Compile Include="Models\Service\CountryCodes.cs" />
     <Compile Include="Models\Service\TargetSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
