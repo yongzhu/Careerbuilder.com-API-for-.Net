@@ -14,9 +14,9 @@ namespace CBApi {
         protected List<BeforeRequestEvent> _BeforeListeners = new List<BeforeRequestEvent>();
         protected List<AfterRequestEvent> _AfterListeners = new List<AfterRequestEvent>();
 
-        public string DevKey { 
-            get {return _Settings.DevKey;}
-            set { _Settings.DevKey = value; } 
+        public string DevKey {
+            get { return _Settings.DevKey; }
+            set { _Settings.DevKey = value; }
         }
         public string CobrandCode {
             get { return _Settings.CobrandCode; }
@@ -109,7 +109,7 @@ namespace CBApi {
             WireAfterRequestEvents(req);
             return req.GetAccessToken();
         }
-        
+
         /// <summary>
         /// Gets the Uri to redirect to for OAuth
         /// </summary>
@@ -185,8 +185,7 @@ namespace CBApi {
         /// </summary>
         /// <param name="app">the saved search that is wanting to be saved</param>
         /// <returns></returns>
-        public SavedSearchCreateResponse CreateSavedSearch(SavedSearchCreate app)
-        {
+        public SavedSearchCreateResponse CreateSavedSearch(SavedSearchCreate app) {
             var req = new SavedSearchCreateRequest(_Settings);
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
@@ -198,8 +197,7 @@ namespace CBApi {
         /// </summary>
         /// <param name="app">Info to lead to the saved search</param>
         /// <returns></returns>
-        public SavedSearchRetrieveResponseModel RetrieveSavedSearch(SavedSearchRetrieveRequestModel app)
-        {
+        public SavedSearchRetrieveResponseModel RetrieveSavedSearch(SavedSearchRetrieveRequestModel app) {
             var req = new SavedSearchRetrieveRequest(_Settings);
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
@@ -211,8 +209,7 @@ namespace CBApi {
         /// </summary>
         /// <param name="app">info to lead to the users saved searches</param>
         /// <returns></returns>
-        public SavedSearchListResponseModel ListSavedSearches(SavedSearchListRequestModel app)
-        {
+        public SavedSearchListResponseModel ListSavedSearches(SavedSearchListRequestModel app) {
             var req = new SavedSearchListRequest(_Settings);
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
@@ -224,8 +221,7 @@ namespace CBApi {
         /// </summary>
         /// <param name="app">The data for the savedsearch</param>
         /// <returns></returns>
-        public SavedSearchUpdateResponseModel UpdateSavedSearch(SavedSearchUpdateRequestModel app)
-        {
+        public SavedSearchUpdateResponseModel UpdateSavedSearch(SavedSearchUpdateRequestModel app) {
             var req = new SavedSearchUpdateRequest(_Settings);
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
@@ -248,8 +244,7 @@ namespace CBApi {
         /// </summary>
         /// <param name="request">the input for the application</param>
         /// <returns></returns>
-        public AnonymousApplicationResponse AnonymousApplication(AnonymousApplicationRequest request)
-        {
+        public AnonymousApplicationResponse AnonymousApplication(AnonymousApplicationRequest request) {
             var req = new AnonymousApplication(_Settings);
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
@@ -277,7 +272,7 @@ namespace CBApi {
             WireAfterRequestEvents(req);
             return req;
         }
-     
+
         /// <summary>
         /// Make a call to /v1/job
         /// </summary>
@@ -343,6 +338,13 @@ namespace CBApi {
             WireBeforeRequestEvents(req);
             WireAfterRequestEvents(req);
             return req.GetReport();
+        }
+
+        public Models.WebAPIs.SavedSearch.SavedSearches RetrieveASavedSearch(string savedSearchDID, string userOAuthToken) {
+            var req = new RetrieveASavedSearch(_Settings, savedSearchDID);
+            WireBeforeRequestEvents(req);
+            WireAfterRequestEvents(req);
+            return req.Submit(userOAuthToken);
         }
 
         #endregion
