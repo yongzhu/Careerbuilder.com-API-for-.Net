@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="CBApi\framework\ErrorParserTests.cs" />
     <Compile Include="CBApi\framework\requests\BlankAppStub.cs" />
-    <Compile Include="CBApi\framework\requests\RetrieveASavedSearchTests.cs" />
     <Compile Include="CBApi\framework\requests\SavedSearchCreateRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\SavedSearchListRequestTest.cs" />
     <Compile Include="CBApi\framework\requests\SavedSearchRetrieveRequestTest.cs" />
@@ -82,7 +81,6 @@
     <Compile Include="CBApi\framework\stubrequests\CategoriesStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\JobRecRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\JobRecWithUserPrefRequestStub.cs" />
-    <Compile Include="CBApi\framework\stubrequests\RetrieveASavedSearchStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\SavedSearchCreateRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\SavedSearchListRequestStub.cs" />
     <Compile Include="CBApi\framework\stubrequests\SavedSearchRetrieveRequestStub.cs" />

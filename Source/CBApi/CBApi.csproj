@@ -68,7 +68,6 @@
     <Compile Include="Framework\Requests\JobReportRequest.cs" />
     <Compile Include="Framework\Requests\PostRequest.cs" />
     <Compile Include="Framework\Requests\PutRequest.cs" />
-    <Compile Include="Framework\Requests\RetrieveASavedSearch.cs" />
     <Compile Include="Framework\Requests\SavedSearchCreateRequest.cs" />
     <Compile Include="Framework\Requests\SavedSearchListRequest.cs" />
     <Compile Include="Framework\Requests\SavedSearchRetrieveRequest.cs" />
@@ -132,8 +131,6 @@
     <Compile Include="Models\Service\CareerBuilderEU.cs" />
     <Compile Include="Models\Service\CountryCodes.cs" />
     <Compile Include="Models\Service\TargetSite.cs" />
-    <Compile Include="Models\WebAPIs\SavedSearch\SavedSearch.cs" />
-    <Compile Include="Models\WebAPIs\WebApiBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
